@@ -5,15 +5,17 @@ import Link from 'next/link';
 import websiteData from '@/data/websiteData.json';
 
 export default function Logo() {
-  const [transparentSrc, setTransparentSrc] = useState<string | null>(null);
+  const headerData = (websiteData as any)?.categories?.Yoga?.sections?.Header?.variants?.YogaHeader1;
+  const commonData = (websiteData as any)?.common;
 
-  const headerData = (websiteData as any).categories.Yoga.sections.Header.variants.YogaHeader1;
-  const commonData = (websiteData as any).common;
+  const logoSrc = headerData?.logo || '/logo.png';
+  const siteName = commonData?.siteName || 'PranaYoga';
 
-  const logoSrc = headerData.logo || '/logo.png';
-  const siteName = commonData.siteName || 'PranaYoga';
+  const [transparentSrc, setTransparentSrc] = useState<string>(logoSrc);
 
   useEffect(() => {
+    if (!logoSrc) return;
+
     const img = new Image();
     img.src = logoSrc;
     img.crossOrigin = 'anonymous';
@@ -42,18 +44,21 @@ export default function Logo() {
       ctx.putImageData(imgData, 0, 0);
       setTransparentSrc(canvas.toDataURL('image/png'));
     };
+
+    img.onerror = () => {
+      setTransparentSrc(logoSrc);
+    };
   }, [logoSrc]);
 
   return (
     <Link href="/" className="inline-block cursor-pointer">
       <img
-        src={transparentSrc || logoSrc}
+        src={transparentSrc}
         alt={siteName}
         className="h-14 sm:h-16 w-auto object-contain"
         style={{
           filter: 'contrast(160%) brightness(88%) saturate(120%) drop-shadow(0 1px 1px rgba(0,0,0,0.08))',
-          opacity: transparentSrc ? 1 : 0,
-          transition: 'opacity 0.2s ease-in-out',
+          opacity: 1,
         }}
       />
     </Link>
