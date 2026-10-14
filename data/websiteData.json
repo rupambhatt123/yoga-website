@@ -1,0 +1,724 @@
+{
+  "common": {
+    "siteName": "PranaYoga",
+    "phone": "+1 000 000 000",
+    "email": "info@xyz.com",
+    "address": "Madison Avenue 21c, New York, NY 10010",
+    "socialLinks": {
+      "instagram": "https://instagram.com",
+      "facebook": "https://facebook.com",
+      "youtube": "https://youtube.com"
+    }
+  },
+  "categories": {
+    "Yoga": {
+      "templateComponents": {
+        "template-1": {
+          "shared": {
+            "Header": "YogaHeader1",
+            "Footer": "YogaFooter1"
+          },
+          "pages": {
+            "home": {
+              "components": [
+                { "key": "Hero", "component": "YogaHero1" },
+                { "key": "Classes", "component": "YogaClasses1" },
+                { "key": "WhyChooseUs", "component": "YogaWhyChooseUs1" },
+                { "key": "Trainers", "component": "YogaTrainers1" },
+                { "key": "Packages", "component": "YogaPackages1" },
+                { "key": "Video", "component": "YogaVideo1" },
+                { "key": "Testimonials", "component": "YogaTestimonials1" },
+                { "key": "Blog", "component": "YogaBlog1" },
+                { "key": "Contact", "component": "YogaContact1" }
+              ]
+            },
+            "about": {
+              "components": [
+                { "key": "Hero", "component": "YogaHero1" },
+                { "key": "WhyChooseUs", "component": "YogaWhyChooseUs1" },
+                { "key": "Trainers", "component": "YogaTrainers1" },
+                { "key": "Testimonials", "component": "YogaTestimonials1" }
+              ]
+            },
+            "classes": {
+              "components": [
+                { "key": "Classes", "component": "YogaClasses1" },
+                { "key": "Packages", "component": "YogaPackages1" }
+              ]
+            },
+            "classDetail": {
+              "components": [
+                { "key": "ClassDetail", "component": "YogaDetail1" }
+              ]
+            },
+            "trainers": {
+              "components": [
+                { "key": "Trainers", "component": "YogaTrainers1" }
+              ]
+            },
+            "packages": {
+              "components": [
+                { "key": "Packages", "component": "YogaPackages1" }
+              ]
+            },
+            "gallery": {
+              "components": [
+                { "key": "Gallery", "component": "YogaGallery1" }
+              ]
+            },
+            "blog": {
+              "components": [
+                { "key": "Blog", "component": "YogaBlog1" }
+              ]
+            },
+            "blogDetail": {
+              "components": [
+                { "key": "BlogDetail", "component": "YogaBlogDetail1" }
+              ]
+            },
+            "appointment": {
+              "components": [
+                { "key": "Appointment", "component": "YogaAppointment1" }
+              ]
+            },
+            "contact": {
+              "components": [
+                { "key": "Contact", "component": "YogaContact1" }
+              ]
+            }
+          }
+        }
+      },
+      "pages": {
+        "about": {
+          "title": "About Us",
+          "breadcrumb": "About Us"
+        },
+        "blogDetail": {
+          "title": "Blog Detail",
+          "breadcrumb": "Blog Detail"
+        },
+        "blogs": {
+          "title": "Our Blogs",
+          "breadcrumb": "Our Blogs"
+        },
+        "appointment": {
+          "title": "Book An Appointment",
+          "breadcrumb": "Book An Appointment"
+        },
+        "classes": {
+          "title": "Yoga Classes",
+          "breadcrumb": "Yoga Classes"
+        },
+        "contact": {
+          "title": "Contact Us",
+          "breadcrumb": "Contact Us"
+        },
+        "gallery": {
+          "title": "Our Gallery",
+          "breadcrumb": "Our Gallery"
+        },
+        "packages": {
+          "title": "Our Packages",
+          "breadcrumb": "Our Packages"
+        },
+        "trainers": {
+          "title": "Yoga Trainer",
+          "breadcrumb": "Yoga Trainer"
+        },
+        "yogaDetail": {
+          "title": "Yoga Detail",
+          "breadcrumb": "Yoga Detail"
+        }
+      },
+      "sections": {
+        "Header": {
+          "variants": {
+            "YogaHeader1": {
+              "logo": "/logo.png",
+              "navLinks": [
+                { "title": "Home", "path": "/" },
+                { "title": "About Us", "path": "/about" },
+                { "title": "Yoga Classes", "path": "/classes" },
+                { "title": "Trainers", "path": "/trainers" },
+                { "title": "Packages", "path": "/packages" },
+                { "title": "Gallery", "path": "/gallery" },
+                { "title": "Blog", "path": "/blogs" },
+                { "title": "Contact Us", "path": "/contact" }
+              ],
+              "ctaButton": {
+                "text": "Book Appointment",
+                "path": "/book-appointment"
+              }
+            }
+          }
+        },
+        "Classes": {
+          "variants": {
+            "YogaClasses1": {
+              "badge": "Our Services",
+              "title": "Explore Our Yoga Services",
+              "description": "Discover a range of yoga programs designed to support your physical, mental and emotional well-being. Choose the right practice for your goals.",
+              "items": [
+                {
+                  "id": 1,
+                  "title": "Group Yoga Classes",
+                  "description": "Energizing classes for all levels in a friendly and supportive space.",
+                  "image": "/z1.webp",
+                  "ctaText": "Learn More",
+                  "ctaLink": "/yoga-detail"
+                },
+                {
+                  "id": 2,
+                  "title": "Personalized Sessions",
+                  "description": "One-to-one yoga sessions tailored to your goals and needs.",
+                  "image": "/g8.png",
+                  "ctaText": "Learn More",
+                  "ctaLink": "/yoga-detail"
+                },
+                {
+                  "id": 3,
+                  "title": "Corporate Yoga",
+                  "description": "Wellness programs to improve focus, reduce stress and boost productivity.",
+                  "image": "/g9.jpg",
+                  "ctaText": "Learn More",
+                  "ctaLink": "/yoga-detail"
+                },
+                {
+                  "id": 4,
+                  "title": "Yoga Retreats",
+                  "description": "Rejuvenating retreats to help you disconnect, relax and rediscover yourself.",
+                  "image": "/g10.jpg",
+                  "ctaText": "Learn More",
+                  "ctaLink": "/yoga-detail"
+                }
+              ]
+            }
+          }
+        },
+        "WhyChooseUs": {
+          "variants": {
+            "YogaWhyChooseUs1": {
+              "badge": "Why Choose Us",
+              "titleLine1": "Your Wellness",
+              "titleLine2": "Is Our Priority",
+              "description": "At PranaYoga, we are committed to helping you achieve a healthier, happier and more balanced life through authentic yoga practices, expert guidance and a supportive community.",
+              "heroImage": "/m1.png",
+              "motifImage": "/14oct.png",
+              "items": [
+                {
+                  "id": 1,
+                  "title": "Expert Instructors",
+                  "description": "Learn from certified and experienced yoga teachers who guide you with care."
+                },
+                {
+                  "id": 2,
+                  "title": "Personalized Approach",
+                  "description": "Classes tailored to your fitness level, goals and individual needs."
+                },
+                {
+                  "id": 3,
+                  "title": "Holistic Wellness",
+                  "description": "Improve physical health, mental clarity and emotional well-being."
+                },
+                {
+                  "id": 4,
+                  "title": "Supportive Community",
+                  "description": "Join a positive and like-minded community on your wellness journey."
+                },
+                {
+                  "id": 5,
+                  "title": "Flexible Classes",
+                  "description": "Choose from online, in-studio and outdoor sessions at your convenience."
+                },
+                {
+                  "id": 6,
+                  "title": "Safe & Peaceful Environment",
+                  "description": "Practice in a clean, calm and welcoming space designed for your comfort."
+                }
+              ]
+            }
+          }
+        },
+        "Video": {
+          "variants": {
+            "YogaVideo1": {
+              "badge": "Video",
+              "titleLine1": "Experience the",
+              "highlightText": "Power",
+              "titleLine2": "of Yoga",
+              "description": "Watch our video to see how yoga can bring balance, strength and positivity to your life.",
+              "buttonText": "Watch Video",
+              "thumbnailImage": "/m5.png",
+              "videoUrl": "https://www.youtube-nocookie.com/embed/v7AYKMP6rOE?autoplay=1&rel=0"
+            }
+          }
+        },
+        "ClassDetail": {
+          "variants": {
+            "YogaDetail1": {
+              "badge": "Our Services",
+              "title": "Group Yoga Classes",
+              "description": "Join our group yoga classes and experience the power of collective energy in a positive and supportive environment. Our classes are designed for all levels, from beginners to advanced practitioners, helping you build strength, flexibility and inner peace.",
+              "ctaButton": {
+                "text": "Enquire Now",
+                "href": "/contact"
+              },
+              "heroImage": "/g2.jpg",
+              "overviewImage": "/yd1.jpg",
+              "expectImage": "/yd2.jpg",
+              "features": [
+                { "title": "All Levels\nWelcome", "type": "lotus" },
+                { "title": "Supportive\nCommunity", "type": "community" },
+                { "title": "Experienced\nYoga Trainers", "type": "trainer" },
+                { "title": "Mind-Body\nBalance", "type": "balance" }
+              ],
+              "overview": {
+                "title": "Overview",
+                "description": "Our group yoga classes create a motivating and friendly atmosphere where you can practice, learn and grow together. Guided by certified trainers, these sessions combine traditional yoga techniques with modern approaches to help you improve physical fitness, reduce stress and enhance overall well-being.",
+                "cards": [
+                  {
+                    "title": "Suitable For",
+                    "value": "Beginners, Intermediate and Advanced"
+                  },
+                  {
+                    "title": "Class Duration",
+                    "value": "60 Minutes\n(Each Session)"
+                  },
+                  {
+                    "title": "Class Frequency",
+                    "value": "Multiple Batches\nAvailable"
+                  }
+                ]
+              },
+              "benefits": [
+                {
+                  "title": "Improves Flexibility",
+                  "desc": "Helps in better posture, flexibility and body alignment."
+                },
+                {
+                  "title": "Builds Strength",
+                  "desc": "Strengthens muscles and improves overall stamina."
+                },
+                {
+                  "title": "Reduces Stress",
+                  "desc": "Promotes relaxation, calms the mind and reduces anxiety."
+                },
+                {
+                  "title": "Enhances Mental Clarity",
+                  "desc": "Improves focus, concentration and emotional balance."
+                }
+              ],
+              "expectations": [
+                "Warm-up and breathing exercises (Pranayama)",
+                "Guided yoga postures (Asanas)",
+                "Relaxation and meditation techniques",
+                "Cool-down and mindfulness practice"
+              ]
+            }
+          }
+        },
+        "Packages": {
+          "variants": {
+            "YogaPackages1": {
+              "badge": "Our Packages",
+              "title": "Choose Your Yoga Journey",
+              "description": "Flexible and affordable yoga packages designed to fit your goals, lifestyle and experience level. Start your journey towards a healthier, happier and more balanced life.",
+              "heroImage": "/m1.png",
+              "featurePills": [
+                { "label": "Certified\nTrainers", "icon": "lotus" },
+                { "label": "All Levels\nWelcome", "icon": "users" },
+                { "label": "Holistic\nWellness", "icon": "heart" },
+                { "label": "Flexible\nSchedules", "icon": "calendar" }
+              ],
+              "plans": [
+                {
+                  "id": 1,
+                  "title": "Basic Package",
+                  "subtitle": "Perfect for beginners who want to start their yoga journey.",
+                  "price": "1,999",
+                  "period": "Month",
+                  "image": "/yd.webp",
+                  "features": [
+                    "8 Group Yoga Classes per Month",
+                    "Basic Yoga & Breathing Techniques",
+                    "Guided by Certified Trainers",
+                    "Access to Online Resources",
+                    "Flexible Class Timings"
+                  ]
+                },
+                {
+                  "id": 2,
+                  "title": "Standard Package",
+                  "subtitle": "Best for regular practitioners looking for complete wellness.",
+                  "price": "3,499",
+                  "period": "Month",
+                  "image": "/yd2.jpg",
+                  "features": [
+                    "12 Group Yoga Classes per Month",
+                    "All Yoga Styles (Hatha, Vinyasa, Yin)",
+                    "Meditation & Pranayama Sessions",
+                    "Personalized Guidance",
+                    "Access to Wellness Workshops",
+                    "Flexible Class Timings"
+                  ]
+                },
+                {
+                  "id": 3,
+                  "title": "Premium Package",
+                  "subtitle": "A complete package for a transformative yoga experience.",
+                  "price": "5,999",
+                  "period": "Month",
+                  "image": "/z1.webp",
+                  "features": [
+                    "Unlimited Group Yoga Classes",
+                    "Personalized Yoga Sessions (2 per Month)",
+                    "Meditation & Mindfulness Training",
+                    "Customized Wellness Plan",
+                    "Access to All Workshops & Events",
+                    "Priority Booking",
+                    "Flexible Class Timings"
+                  ]
+                }
+              ]
+            }
+          }
+        },
+        "Trainers": {
+          "variants": {
+            "YogaTrainers1": {
+              "badge": "Our Team",
+              "title": "Yoga Trainers",
+              "description": "Meet our experienced and certified yoga trainers who are passionate about guiding you towards a healthier, happier and more balanced life.",
+              "trainers": [
+                {
+                  "id": 1,
+                  "name": "Aaradhya Sharma",
+                  "role": "Hatha Yoga Trainer",
+                  "desc": "Aaradhya specializes in Hatha Yoga and helps students build strength, flexibility and inner peace.",
+                  "image": "/t2.png",
+                  "tags": ["Hatha Yoga", "Breathing", "Meditation"]
+                },
+                {
+                  "id": 2,
+                  "name": "Rohan Mehta",
+                  "role": "Vinyasa Yoga Trainer",
+                  "desc": "Rohan guides dynamic Vinyasa classes that improve stamina, focus and overall well-being.",
+                  "image": "/t1.png",
+                  "tags": ["Vinyasa Yoga", "Strength", "Mindfulness"]
+                },
+                {
+                  "id": 3,
+                  "name": "Priya Desai",
+                  "role": "Ashtanga Yoga Trainer",
+                  "desc": "Priya specializes in Ashtanga Yoga and helps students develop discipline, strength and mental clarity.",
+                  "image": "/t3.png",
+                  "tags": ["Ashtanga Yoga", "Flexibility", "Detox"]
+                },
+                {
+                  "id": 4,
+                  "name": "Neha Kapoor",
+                  "role": "Yin Yoga Trainer",
+                  "desc": "Neha's Yin Yoga classes focus on deep relaxation, stress relief and emotional balance.",
+                  "image": "/t4.png",
+                  "tags": ["Yin Yoga", "Relaxation", "Stress Relief"]
+                },
+                {
+                  "id": 5,
+                  "name": "Karan Sinha",
+                  "role": "Meditation Trainer",
+                  "desc": "Karan helps students develop mindfulness through guided meditation and breathing practices.",
+                  "image": "/t5.png",
+                  "tags": ["Meditation", "Pranayama", "Mindfulness"]
+                },
+                {
+                  "id": 6,
+                  "name": "Ananya Rao",
+                  "role": "Power Yoga Trainer",
+                  "desc": "Ananya's Power Yoga sessions focus on building strength, stamina and confidence.",
+                  "image": "/t6.png",
+                  "tags": ["Power Yoga", "Weight Loss", "Endurance"]
+                }
+              ]
+            }
+          }
+        },
+        "Testimonials": {
+          "variants": {
+            "YogaTestimonials1": {
+              "badge": "Testimonials",
+              "titleLine1": "Client ",
+              "titleLine2": "Experiences",
+              "description": "Discover how our clients have benefited from our personalized care and support.",
+              "items": [
+                {
+                  "id": 1,
+                  "author": "Linda Johnson",
+                  "text": "PranaYoga has truly transformed my life. The instructors are highly knowledgeable, and the classes are peaceful and well-structured. I feel more energetic, focused and balanced both physically and mentally."
+                },
+                {
+                  "id": 2,
+                  "author": "Robert Smith",
+                  "text": "The yoga classes at PranaYoga have helped me reduce stress and improve my overall well-being. The environment is calm, supportive and welcoming. Each session leaves me feeling refreshed and more positive."
+                },
+                {
+                  "id": 3,
+                  "author": "Emily Davis",
+                  "text": "I love the personalized approach and attention to detail. The trainers are professional and truly care about your progress. PranaYoga has given me better flexibility, improved focus and a more positive outlook on life."
+                }
+              ]
+            }
+          }
+        },
+        "Gallery": {
+          "variants": {
+            "YogaGallery1": {
+              "badge": "Our Gallery",
+              "titleLine1": "Moments of Wellness",
+              "titleLine2": "Through Our Lens",
+              "categories": [
+                "All",
+                "Yoga Classes",
+                "Workshops",
+                "Events",
+                "Outdoor Sessions"
+              ],
+              "items": [
+                {
+                  "id": 1,
+                  "category": "Yoga Classes",
+                  "title": "Cobra Pose Practice",
+                  "image": "/g1.jpg"
+                },
+                {
+                  "id": 2,
+                  "category": "Workshops",
+                  "title": "Meditation Mudra Close-Up",
+                  "image": "/g2.jpg"
+                },
+                {
+                  "id": 3,
+                  "category": "Yoga Classes",
+                  "title": "Studio Group Namaste",
+                  "image": "/g3.jpg"
+                },
+                {
+                  "id": 4,
+                  "category": "Outdoor Sessions",
+                  "title": "Standing Bow Pose",
+                  "image": "/g4.webp"
+                },
+                {
+                  "id": 5,
+                  "category": "Yoga Classes",
+                  "title": "Seated Lotus Meditation",
+                  "image": "/g5.webp"
+                },
+                {
+                  "id": 6,
+                  "category": "Outdoor Sessions",
+                  "title": "Lake Mountain Warrior Pose",
+                  "image": "/g6.png"
+                }, {
+                  "id": 7,
+                  "category": "Outdoor Sessions",
+                  "title": "Lake Mountain Warrior Pose",
+                  "image": "/m1.png"
+                }
+              ]
+            }
+          }
+        },
+        "Blog": {
+          "variants": {
+            "YogaBlog1": {
+              "badge": "Resources",
+              "title": "Going Deeper with\nYoga",
+              "description": "Explore our latest articles, tips and inspirations to support your yoga journey towards a healthier and happier life.",
+              "posts": [
+                {
+                  "id": 1,
+                  "title": "Bhakti Yoga: Devotion and Love to Warm Our Hearts",
+                  "date": "June 16, 2021",
+                  "description": "Discover how the path of Bhakti Yoga can open your heart, bring more love into your life, and create a deeper connection with yourself and the world around you.",
+                  "image": "/m7.png",
+                  "link": "/blog-detail"
+                },
+                {
+                  "id": 2,
+                  "title": "June Teacher of the Month – Angela Dawn",
+                  "date": "June 16, 2021",
+                  "description": "Meet Angela Dawn, our June Teacher of the Month, and learn about her inspiring yoga journey, teaching style and philosophy.",
+                  "image": "/m1.png",
+                  "link": "/blog-detail"
+                },
+                {
+                  "id": 3,
+                  "title": "Tapas – Sparking and Tending Your Inner Fire with Care",
+                  "date": "June 16, 2021",
+                  "description": "Learn how the practice of Tapas (discipline and self-effort) helps you build strength, focus and resilience, while nurturing your inner fire with kindness and balance.",
+                  "image": "g3.jpg",
+                  "link": "/blog-detail"
+                }
+              ]
+            }
+          }
+        },
+        "BlogDetail": {
+          "variants": {
+            "YogaBlogDetail1": {
+              "title": "The Amazing Health Benefits of Yoga for a Better Life",
+              "date": "October 12, 2026",
+              "author": "By Admin",
+              "heroImage": "/m1.png",
+              "intro": "Yoga is more than just a form of exercise — it is a holistic practice that brings balance to the body, mind and soul. In today's fast-paced world, stress, anxiety and unhealthy lifestyle habits have become common. Practicing yoga regularly can help you stay physically fit, mentally calm and emotionally strong.",
+              "sections": [
+                {
+                  "number": "1",
+                  "title": "Improves Physical Health",
+                  "description": "Yoga helps improve flexibility, strength, posture and overall physical fitness. Regular practice can relieve muscular tension, improve circulation and support better body alignment.",
+                  "image": "/g8.png"
+                },
+                {
+                  "number": "2",
+                  "title": "Reduces Stress and Anxiety",
+                  "description": "Breathing exercises and mindfulness in yoga help calm the nervous system, reduce stress and promote relaxation. It encourages positive thinking and helps you manage daily challenges with greater ease.",
+                  "image": null
+                },
+                {
+                  "number": "3",
+                  "title": "Boosts Mental Well-Being",
+                  "description": "Yoga improves focus, concentration and memory. It helps clear mental clutter, enhances self-awareness and promotes a more positive outlook on life.",
+                  "image": "/m3.png"
+                },
+                {
+                  "number": "4",
+                  "title": "Supports Emotional Balance",
+                  "description": "Through mindful movement and breathing, yoga helps release negative emotions, promotes inner peace and builds emotional resilience. It encourages a balanced and happier state of mind.",
+                  "image": null
+                }
+              ],
+              "recentPosts": [
+                {
+                  "id": 1,
+                  "title": "How Yoga Helps Reduce Stress",
+                  "date": "October 10, 2026",
+                  "image": "/g2.jpg"
+                },
+                {
+                  "id": 2,
+                  "title": "Top 5 Breathing Techniques in Yoga",
+                  "date": "October 08, 2026",
+                  "image": "/g9.jpg"
+                },
+                {
+                  "id": 3,
+                  "title": "Yoga for Better Posture and Flexibility",
+                  "date": "October 05, 2026",
+                  "image": "/g10.jpg"
+                },
+                {
+                  "id": 4,
+                  "title": "The Role of Nutrition in a Yogic Lifestyle",
+                  "date": "October 02, 2026",
+                  "image": "/g5.webp"
+                }
+              ]
+            }
+          }
+        },
+        "Appointment": {
+          "variants": {
+            "YogaAppointment1": {
+              "badge": "Book An Appointment",
+              "title": "Schedule Your Yoga Session",
+              "description": "Book your yoga class or personalized session at a time that suits you. Take the first step towards a healthier, happier and more balanced life.",
+              "heroImage": "/m1.png",
+              "floatingBadge": {
+                "title": "Wellness Begins with One Session",
+                "subtitle": "Book your session today and experience the transformation."
+              },
+              "servicesOptions": [
+                "Group Yoga Classes",
+                "Personalized Sessions",
+                "Corporate Yoga",
+                "Yoga Retreats"
+              ],
+              "features": [
+                {
+                  "title": "Flexible Scheduling",
+                  "desc": "Choose a time that works for you."
+                },
+                {
+                  "title": "Expert Trainers",
+                  "desc": "Learn from certified yoga professionals."
+                },
+                {
+                  "title": "Peaceful Environment",
+                  "desc": "Practice in a calm and supportive space."
+                },
+                {
+                  "title": "All Levels Welcome",
+                  "desc": "Suitable for beginners to advanced practitioners."
+                }
+              ],
+              "whyPoints": [
+                {
+                  "title": "Personalized Guidance",
+                  "desc": "Get expert guidance tailored to your goals and needs."
+                },
+                {
+                  "title": "Improves Well-Being",
+                  "desc": "Helps reduce stress, improve flexibility and boost energy."
+                },
+                {
+                  "title": "Builds Consistency",
+                  "desc": "Stay committed with scheduled sessions."
+                },
+                {
+                  "title": "Holistic Approach",
+                  "desc": "Supports your physical, mental and emotional health."
+                }
+              ]
+            }
+          }
+        },
+        "Contact": {
+          "variants": {
+            "YogaContact1": {
+              "badge": "Contact Us",
+              "title": "CONTACT US OR VISIT",
+              "description": "We would love to hear from you. Get in touch for class details, schedule, or any queries. You can also visit our studio at the location below.",
+              "studio": {
+                "title": "OUR STUDIO",
+                "image": "/m1.png",
+                "location": "New York, NY 10010",
+                "phone": "+1 000 000 000",
+                "address": "Madison Avenue 21c, New York, NY 10010"
+              }
+            }
+          }
+        },
+        "Footer": {
+          "variants": {
+            "YogaFooter1": {
+              "logo": "/footer.png",
+              "navLinks": [
+                { "name": "About Us", "href": "/about" },
+                { "name": "Yoga Classes", "href": "/classes" },
+                { "name": "Gallery", "href": "/gallery" },
+                { "name": "Packages", "href": "/packages" },
+                { "name": "Yoga Trainer", "href": "/trainers" },
+                { "name": "Contact Us", "href": "/contact" }
+              ],
+              "phone": "+1 000 000 000",
+              "email": "info@xyz.com",
+              "location": "Madison Avenue 21c, New York, NY 10010",
+              "copyright": "© 2026 PranaYoga. All rights reserved. Powered by Lestow."
+            }
+          }
+        }
+      }
+    }
+  }
+}
