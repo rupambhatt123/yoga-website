@@ -5,8 +5,6 @@ import Link from 'next/link';
 import websiteData from '@/data/websiteData.json';
 
 export default function About() {
-  const [motifSrc, setMotifSrc] = useState<string | null>(null);
-
   const aboutData = (websiteData as any)?.categories?.Yoga?.sections?.About?.variants?.YogaAbout1 || {
     badge: 'About Us',
     description: 'Mariah is a Yoga Instructor from New Hampshire. She attended Ithaca College, where she earned a degree in clinical exercise science. Her specialties are Ashtanga yoga, Hatha yoga, and Kundalini yoga.',
@@ -16,9 +14,13 @@ export default function About() {
     ctaText: 'About Us'
   };
 
+  const [motifSrc, setMotifSrc] = useState<string>(aboutData.motifImage || '/m2.png');
+
   useEffect(() => {
+    if (!aboutData.motifImage) return;
+
     const img = new Image();
-    img.src = aboutData.motifImage || '/m2.png';
+    img.src = aboutData.motifImage;
     img.crossOrigin = 'anonymous';
 
     img.onload = () => {
@@ -56,21 +58,20 @@ export default function About() {
   }, [aboutData.motifImage]);
 
   return (
-    <section className="bg-[#FAF8F5] overflow-hidden my-0 py-0">
-      <div className="grid grid-cols-1 lg:grid-cols-12 items-stretch min-h-0 lg:min-h-[480px]">
+    <section className="bg-[#FAF8F5] overflow-hidden w-full my-0 py-0">
+      <div className="grid grid-cols-1 lg:grid-cols-12 items-stretch">
         
-        {/* Left Text & Motif Column */}
-        <div className="lg:col-span-6 flex flex-col justify-center items-center text-center px-5 sm:px-10 lg:px-14 py-3 sm:py-5 lg:py-6">
-          <div className="max-w-[460px] w-full flex flex-col items-center">
+        {/* Left Text & Motif Column - Compact spacing on mobile */}
+        <div className="lg:col-span-6 flex flex-col justify-center items-center text-center px-4 sm:px-10 lg:px-14 py-5 sm:py-8 lg:py-16">
+          <div className="max-w-[440px] w-full flex flex-col items-center">
             
             {/* Motif Image */}
-            <div className="w-28 sm:w-36 md:w-44 lg:w-48 flex items-center justify-center mb-2 sm:mb-3">
+            <div className="w-20 sm:w-28 md:w-36 flex items-center justify-center mb-1.5 sm:mb-3">
               <img
-                src={motifSrc || aboutData.motifImage || '/m2.png'}
+                src={motifSrc}
                 alt={aboutData.badge || 'Our Story'}
-                className="w-full h-auto object-contain transition-opacity duration-300"
+                className="w-full h-auto object-contain"
                 style={{
-                  opacity: motifSrc ? 1 : 0,
                   filter: 'contrast(125%) brightness(95%)',
                 }}
               />
@@ -78,17 +79,17 @@ export default function About() {
 
             {/* Description Text */}
             <p 
-              className="text-[14.5px] sm:text-[17px] lg:text-[19px] leading-[1.55] text-[#22382C] font-normal px-2 sm:px-0"
+              className="text-[14px] sm:text-[16px] lg:text-[18px] leading-[1.5] text-[#22382C] font-normal px-2 sm:px-0"
               style={{ fontFamily: "'Playfair Display', 'Cormorant Garamond', Georgia, serif" }}
             >
               {aboutData.description}
             </p>
 
             {/* CTA Button */}
-            <div className="mt-4 sm:mt-5">
+            <div className="mt-3.5 sm:mt-5">
               <Link
                 href={aboutData.ctaLink || '/about'}
-                className="inline-flex items-center gap-2.5 sm:gap-3.5 bg-[#B28243] hover:bg-[#9B6E32] text-white pl-4 sm:pl-5 pr-1.5 sm:pr-2 py-1.5 sm:py-2 rounded-full shadow-sm transition group cursor-pointer"
+                className="inline-flex items-center gap-2.5 sm:gap-3 bg-[#B28243] hover:bg-[#9B6E32] text-white pl-4 sm:pl-5 pr-1.5 sm:pr-2 py-1.5 sm:py-2 rounded-full shadow-sm transition group cursor-pointer"
               >
                 <span className="text-white text-xs sm:text-sm leading-none">
                   &#10033;
@@ -110,12 +111,12 @@ export default function About() {
           </div>
         </div>
 
-        {/* Right Photo Column */}
-        <div className="lg:col-span-6 relative w-full h-[260px] sm:h-[340px] lg:h-auto min-h-full overflow-hidden">
+        {/* Right Photo Column - Perfectly compact for phone view */}
+        <div className="lg:col-span-6 relative w-full h-[240px] xs:h-[280px] sm:h-[340px] lg:h-full min-h-0 lg:min-h-[460px] overflow-hidden">
           <img
             src={aboutData.image || '/m1.png'}
             alt="Yoga Instructor"
-            className="w-full h-full object-cover object-center"
+            className="w-full h-full object-cover object-[center_20%] sm:object-center"
           />
         </div>
 
