@@ -5,7 +5,7 @@ import websiteData from '@/data/websiteData.json';
 
 const serviceIcons = [
   (
-    <svg key="1" className="w-8 h-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+    <svg key="1" className="w-7 h-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
       <circle cx="12" cy="5" r="2.5" />
       <path d="M12 7.5v6" />
       <path d="M7 11l5 2.5 5-2.5" />
@@ -14,7 +14,7 @@ const serviceIcons = [
     </svg>
   ),
   (
-    <svg key="2" className="w-8 h-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+    <svg key="2" className="w-7 h-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
       <path d="M12 6c-1.5 3-1.5 7 0 11 1.5-4 1.5-8 0-11z" />
       <path d="M11 9c-3 1.5-4.5 4.5-3.5 8 2.5-1 4-4 3.5-8z" />
       <path d="M13 9c3 1.5 4.5 4.5 3.5 8-2.5-1-4-4-3.5-8z" />
@@ -22,14 +22,14 @@ const serviceIcons = [
     </svg>
   ),
   (
-    <svg key="3" className="w-8 h-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+    <svg key="3" className="w-7 h-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
       <ellipse cx="7" cy="15" rx="3.5" ry="5" />
       <circle cx="7" cy="15" r="1.5" />
       <path d="M7 10l12-3c1.5-.4 2.5.5 2.5 2v3c0 1.2-.8 2.2-2 2.5L7 20" />
     </svg>
   ),
   (
-    <svg key="4" className="w-8 h-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+    <svg key="4" className="w-7 h-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
       <path d="M12 4c-2 3.5-2 7.5 0 12 2-4.5 2-8.5 0-12z" />
       <path d="M9.5 9c-2.5 1.5-3.5 4.5-2.5 7.5 2.5-.5 4-3 2.5-7.5z" />
       <path d="M14.5 9c2.5 1.5 3.5 4.5 2.5 7.5-2.5-.5-4-3-2.5-7.5z" />
@@ -108,21 +108,14 @@ export default function Services() {
   }, [servicesData.motifImage]);
 
   return (
-    <section className="bg-[#FAF8F5] overflow-hidden">
-      <div className="grid grid-cols-1 lg:grid-cols-12 items-stretch min-h-[640px] lg:min-h-[720px]">
+    <section className="bg-[#FAF8F5] overflow-hidden w-full pt-6 sm:pt-8 pb-8 sm:pb-14">
+      <div className="grid grid-cols-1 lg:grid-cols-12 items-stretch">
         
-        <div className="lg:col-span-6 relative w-full h-[460px] sm:h-[560px] lg:h-auto min-h-full">
-          <img
-            src={servicesData.heroImage || '/m3.png'}
-            alt={servicesData.titleLine1 || 'Yoga Services'}
-            className="w-full h-full object-cover object-center"
-          />
-        </div>
-
-        <div className="lg:col-span-6 flex flex-col justify-center px-8 sm:px-14 lg:px-20 py-16 lg:py-20">
+        {/* Content Column (Mobile pe Order-1) */}
+        <div className="order-1 lg:order-2 lg:col-span-6 flex flex-col justify-center px-5 sm:px-10 lg:px-16 py-4 sm:py-8 lg:py-12">
           <div className="max-w-[550px] mx-auto w-full flex flex-col items-center">
             
-            <div className="w-72 sm:w-80 md:w-96 flex items-center justify-center mb-6">
+            <div className="w-56 sm:w-68 md:w-80 flex items-center justify-center mb-3 sm:mb-4">
               <img
                 src={motifSrc || servicesData.motifImage || '/m4.png'}
                 alt={servicesData.badge || 'Our Services'}
@@ -135,36 +128,36 @@ export default function Services() {
             </div>
 
             <h2
-              className="text-center text-3xl sm:text-4xl lg:text-[45px] leading-[1.15] text-[#1A3326] mb-6"
+              className="text-center text-2xl sm:text-3xl lg:text-[40px] leading-[1.18] text-[#1A3326] mb-2 sm:mb-4"
               style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
             >
               <span className="block font-semibold tracking-tight">{servicesData.titleLine1}</span>
-              <span className="block italic font-normal text-[#688A72] mt-1">
+              <span className="block italic font-normal text-[#688A72] mt-0.5">
                 {servicesData.titleLine2}
               </span>
             </h2>
 
             <p 
-              className="text-center text-[15px] sm:text-[16px] leading-[1.7] text-[#2D4537] max-w-[520px] mb-12 font-normal"
+              className="text-center text-[13.5px] sm:text-[15px] leading-[1.6] text-[#2D4537] max-w-[500px] mb-6 sm:mb-8 font-normal"
               style={{ fontFamily: "'Playfair Display', 'Cormorant Garamond', Georgia, serif" }}
             >
               {servicesData.description}
             </p>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-10 gap-y-10 w-full text-left">
-              {servicesData.items.map((service: any, idx: number) => (
-                <div key={service.id || idx} className="flex items-start gap-4">
-                  <div className="w-16 h-16 rounded-full bg-[#E5EFE6] flex items-center justify-center shrink-0 text-[#254231]">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-5 sm:gap-y-6 w-full text-left">
+              {servicesData.items?.map((service: any, idx: number) => (
+                <div key={service.id || idx} className="flex items-start gap-3">
+                  <div className="w-12 h-12 rounded-full bg-[#E5EFE6] flex items-center justify-center shrink-0 text-[#254231]">
                     {serviceIcons[idx % serviceIcons.length]}
                   </div>
                   <div>
                     <h3
-                      className="text-[19px] font-semibold text-[#183324] leading-snug"
+                      className="text-[16px] sm:text-[17px] font-semibold text-[#183324] leading-snug"
                       style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
                     >
                       {service.title}
                     </h3>
-                    <p className="text-[13px] text-[#2F4A3B] leading-[1.55] mt-1.5">
+                    <p className="text-[12px] sm:text-[13px] text-[#2F4A3B] leading-[1.45] mt-1">
                       {service.description || service.desc}
                     </p>
                   </div>
@@ -173,6 +166,15 @@ export default function Services() {
             </div>
 
           </div>
+        </div>
+
+        {/* Photo Column (Mobile pe Order-2) */}
+        <div className="order-2 lg:order-1 lg:col-span-6 relative w-full h-[250px] xs:h-[280px] sm:h-[380px] lg:h-full min-h-0 lg:min-h-[480px] overflow-hidden mt-6 lg:mt-0">
+          <img
+            src={servicesData.heroImage || '/m3.png'}
+            alt={servicesData.titleLine1 || 'Yoga Services'}
+            className="w-full h-full object-cover object-center"
+          />
         </div>
 
       </div>

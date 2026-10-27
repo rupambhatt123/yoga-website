@@ -45,6 +45,14 @@ export default function YogaClassesList() {
   const classesSectionData = (websiteData as any)?.categories?.Yoga?.sections?.Classes?.variants?.YogaClasses1;
   const classesList = classesSectionData?.items || [];
 
+  const handlePrevClass = () => {
+    setActiveIndex((prev) => (prev === 0 ? classesList.length - 1 : prev - 1));
+  };
+
+  const handleNextClass = () => {
+    setActiveIndex((prev) => (prev === classesList.length - 1 ? 0 : prev + 1));
+  };
+
   useEffect(() => {
     const img = new Image();
     img.src = '/lotus.png';
@@ -117,7 +125,7 @@ export default function YogaClassesList() {
           </p>
         </div>
 
-        {/* Mobile View: Ek card front me aur dots se slide */}
+        {/* Mobile View: Ek card front me aur dots + arrows se slide */}
         {classesList.length > 0 && (
           <div className="block lg:hidden">
             <div className="bg-white rounded-[26px] overflow-hidden shadow-sm border border-[#F0ECE3] flex flex-col min-h-[460px] justify-between">
@@ -166,22 +174,64 @@ export default function YogaClassesList() {
               </div>
             </div>
 
-            {/* Dots Indicator */}
-            <div className="flex items-center justify-center gap-2 mt-8">
-              {classesList.map((_: any, idx: number) => (
+            {/* Dots with Previous and Next Arrow Controls */}
+            {classesList.length > 1 ? (
+              <div className="flex items-center justify-center gap-3 mt-8">
                 <button
-                  key={idx}
                   type="button"
-                  onClick={() => setActiveIndex(idx)}
-                  aria-label={`Go to slide ${idx + 1}`}
-                  className={`h-2.5 rounded-full transition-all duration-300 cursor-pointer ${
-                    activeIndex === idx
-                      ? 'w-7 bg-[#173727]'
-                      : 'w-2.5 bg-[#C59B51]/40 hover:bg-[#C59B51]'
-                  }`}
-                />
-              ))}
-            </div>
+                  onClick={handlePrevClass}
+                  aria-label="Previous class"
+                  className="w-8 h-8 rounded-full border border-[#D9D3C7] bg-white text-[#173727] flex items-center justify-center hover:bg-[#FAF8F5] transition-colors shadow-xs cursor-pointer"
+                >
+                  <svg className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                    <path d="m15 18-6-6 6-6" />
+                  </svg>
+                </button>
+
+                <div className="flex items-center gap-2">
+                  {classesList.map((_: any, idx: number) => (
+                    <button
+                      key={idx}
+                      type="button"
+                      onClick={() => setActiveIndex(idx)}
+                      aria-label={`Go to slide ${idx + 1}`}
+                      className={`h-2.5 rounded-full transition-all duration-300 cursor-pointer ${
+                        activeIndex === idx
+                          ? 'w-7 bg-[#173727]'
+                          : 'w-2.5 bg-[#C59B51]/40 hover:bg-[#C59B51]'
+                      }`}
+                    />
+                  ))}
+                </div>
+
+                <button
+                  type="button"
+                  onClick={handleNextClass}
+                  aria-label="Next class"
+                  className="w-8 h-8 rounded-full border border-[#D9D3C7] bg-white text-[#173727] flex items-center justify-center hover:bg-[#FAF8F5] transition-colors shadow-xs cursor-pointer"
+                >
+                  <svg className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                    <path d="m9 18 6-6-6-6" />
+                  </svg>
+                </button>
+              </div>
+            ) : (
+              <div className="flex items-center justify-center gap-2 mt-8">
+                {classesList.map((_: any, idx: number) => (
+                  <button
+                    key={idx}
+                    type="button"
+                    onClick={() => setActiveIndex(idx)}
+                    aria-label={`Go to slide ${idx + 1}`}
+                    className={`h-2.5 rounded-full transition-all duration-300 cursor-pointer ${
+                      activeIndex === idx
+                        ? 'w-7 bg-[#173727]'
+                        : 'w-2.5 bg-[#C59B51]/40 hover:bg-[#C59B51]'
+                    }`}
+                  />
+                ))}
+              </div>
+            )}
           </div>
         )}
 

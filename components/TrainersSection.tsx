@@ -13,6 +13,14 @@ export default function TrainersSection() {
 
   if (!trainersSectionData) return null;
 
+  const handlePrevTrainer = () => {
+    setActiveIndex((prev) => (prev === 0 ? trainersList.length - 1 : prev - 1));
+  };
+
+  const handleNextTrainer = () => {
+    setActiveIndex((prev) => (prev === trainersList.length - 1 ? 0 : prev + 1));
+  };
+
   return (
     <section className="pt-4 sm:pt-6 pb-16 lg:pb-24 px-6 sm:px-10 lg:px-12 bg-[#FAF8F5]">
       <div className="max-w-[1380px] mx-auto">
@@ -79,21 +87,64 @@ export default function TrainersSection() {
               </div>
             </div>
 
-            <div className="flex items-center justify-center gap-2 mt-8">
-              {trainersList.map((_: any, idx: number) => (
+            {/* Dots with Previous and Next Arrow Controls */}
+            {trainersList.length > 1 ? (
+              <div className="flex items-center justify-center gap-3 mt-8">
                 <button
-                  key={idx}
                   type="button"
-                  onClick={() => setActiveIndex(idx)}
-                  aria-label={`Go to trainer ${idx + 1}`}
-                  className={`h-2.5 rounded-full transition-all duration-300 cursor-pointer ${
-                    activeIndex === idx
-                      ? 'w-7 bg-[#173727]'
-                      : 'w-2.5 bg-[#C59B51]/40 hover:bg-[#C59B51]'
-                  }`}
-                />
-              ))}
-            </div>
+                  onClick={handlePrevTrainer}
+                  aria-label="Previous trainer"
+                  className="w-8 h-8 rounded-full border border-[#D9D3C7] bg-white text-[#173727] flex items-center justify-center hover:bg-[#FAF8F5] transition-colors shadow-xs cursor-pointer"
+                >
+                  <svg className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                    <path d="m15 18-6-6 6-6" />
+                  </svg>
+                </button>
+
+                <div className="flex items-center gap-2">
+                  {trainersList.map((_: any, idx: number) => (
+                    <button
+                      key={idx}
+                      type="button"
+                      onClick={() => setActiveIndex(idx)}
+                      aria-label={`Go to trainer ${idx + 1}`}
+                      className={`h-2.5 rounded-full transition-all duration-300 cursor-pointer ${
+                        activeIndex === idx
+                          ? 'w-7 bg-[#173727]'
+                          : 'w-2.5 bg-[#C59B51]/40 hover:bg-[#C59B51]'
+                      }`}
+                    />
+                  ))}
+                </div>
+
+                <button
+                  type="button"
+                  onClick={handleNextTrainer}
+                  aria-label="Next trainer"
+                  className="w-8 h-8 rounded-full border border-[#D9D3C7] bg-white text-[#173727] flex items-center justify-center hover:bg-[#FAF8F5] transition-colors shadow-xs cursor-pointer"
+                >
+                  <svg className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                    <path d="m9 18 6-6-6-6" />
+                  </svg>
+                </button>
+              </div>
+            ) : (
+              <div className="flex items-center justify-center gap-2 mt-8">
+                {trainersList.map((_: any, idx: number) => (
+                  <button
+                    key={idx}
+                    type="button"
+                    onClick={() => setActiveIndex(idx)}
+                    aria-label={`Go to trainer ${idx + 1}`}
+                    className={`h-2.5 rounded-full transition-all duration-300 cursor-pointer ${
+                      activeIndex === idx
+                        ? 'w-7 bg-[#173727]'
+                        : 'w-2.5 bg-[#C59B51]/40 hover:bg-[#C59B51]'
+                    }`}
+                  />
+                ))}
+              </div>
+            )}
           </div>
         )}
 

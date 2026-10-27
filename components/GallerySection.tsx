@@ -11,15 +11,34 @@ export default function Gallery() {
 
   const [activeCategory, setActiveCategory] = useState(categories[0] || 'All');
   const [activeImageIndex, setActiveImageIndex] = useState(0);
+  const [selectedImage, setSelectedImage] = useState<any | null>(null);
 
   const filteredImages =
     activeCategory === 'All'
       ? galleryItems
       : galleryItems.filter((img: any) => img.category === activeCategory);
 
+  const handlePrevImage = () => {
+    setActiveImageIndex((prev) => (prev === 0 ? filteredImages.length - 1 : prev - 1));
+  };
+
+  const handleNextImage = () => {
+    setActiveImageIndex((prev) => (prev === filteredImages.length - 1 ? 0 : prev + 1));
+  };
+
   useEffect(() => {
     setActiveImageIndex(0);
   }, [activeCategory]);
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        setSelectedImage(null);
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, []);
 
   if (!gallerySectionData) return null;
 
@@ -69,7 +88,10 @@ export default function Gallery() {
 
         {filteredImages.length > 0 && (
           <div className="block sm:hidden">
-            <div className="relative aspect-[4/3] rounded-[22px] overflow-hidden bg-[#ECE7DF] shadow-sm">
+            <div 
+              onClick={() => setSelectedImage(filteredImages[activeImageIndex])}
+              className="relative aspect-[4/3] rounded-[22px] overflow-hidden bg-[#ECE7DF] shadow-sm cursor-pointer"
+            >
               <img
                 src={filteredImages[activeImageIndex]?.image || filteredImages[activeImageIndex]?.src}
                 alt={filteredImages[activeImageIndex]?.title || filteredImages[activeImageIndex]?.alt || 'Yoga Gallery'}
@@ -77,21 +99,64 @@ export default function Gallery() {
               />
             </div>
 
-            <div className="flex items-center justify-center gap-2 mt-6">
-              {filteredImages.map((_: any, idx: number) => (
+            {/* Dots with Previous and Next Arrow Controls */}
+            {filteredImages.length > 1 ? (
+              <div className="flex items-center justify-center gap-3 mt-6">
                 <button
-                  key={idx}
                   type="button"
-                  onClick={() => setActiveImageIndex(idx)}
-                  aria-label={`Go to image ${idx + 1}`}
-                  className={`h-2.5 rounded-full transition-all duration-300 cursor-pointer ${
-                    activeImageIndex === idx
-                      ? 'w-7 bg-[#143928]'
-                      : 'w-2.5 bg-[#C59B51]/40 hover:bg-[#C59B51]'
-                  }`}
-                />
-              ))}
-            </div>
+                  onClick={handlePrevImage}
+                  aria-label="Previous image"
+                  className="w-8 h-8 rounded-full border border-[#D9D3C7] bg-white text-[#173727] flex items-center justify-center hover:bg-[#FAF8F5] transition-colors shadow-xs cursor-pointer"
+                >
+                  <svg className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                    <path d="m15 18-6-6 6-6" />
+                  </svg>
+                </button>
+
+                <div className="flex items-center gap-2">
+                  {filteredImages.map((_: any, idx: number) => (
+                    <button
+                      key={idx}
+                      type="button"
+                      onClick={() => setActiveImageIndex(idx)}
+                      aria-label={`Go to image ${idx + 1}`}
+                      className={`h-2.5 rounded-full transition-all duration-300 cursor-pointer ${
+                        activeImageIndex === idx
+                          ? 'w-7 bg-[#143928]'
+                          : 'w-2.5 bg-[#C59B51]/40 hover:bg-[#C59B51]'
+                      }`}
+                    />
+                  ))}
+                </div>
+
+                <button
+                  type="button"
+                  onClick={handleNextImage}
+                  aria-label="Next image"
+                  className="w-8 h-8 rounded-full border border-[#D9D3C7] bg-white text-[#173727] flex items-center justify-center hover:bg-[#FAF8F5] transition-colors shadow-xs cursor-pointer"
+                >
+                  <svg className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                    <path d="m9 18 6-6-6-6" />
+                  </svg>
+                </button>
+              </div>
+            ) : (
+              <div className="flex items-center justify-center gap-2 mt-6">
+                {filteredImages.map((_: any, idx: number) => (
+                  <button
+                    key={idx}
+                    type="button"
+                    onClick={() => setActiveImageIndex(idx)}
+                    aria-label={`Go to image ${idx + 1}`}
+                    className={`h-2.5 rounded-full transition-all duration-300 cursor-pointer ${
+                      activeImageIndex === idx
+                        ? 'w-7 bg-[#143928]'
+                        : 'w-2.5 bg-[#C59B51]/40 hover:bg-[#C59B51]'
+                    }`}
+                  />
+                ))}
+              </div>
+            )}
           </div>
         )}
 
@@ -99,7 +164,8 @@ export default function Gallery() {
           {filteredImages.map((image: any, index: number) => (
             <div
               key={image.id || index}
-              className="group relative aspect-[4/3] rounded-[22px] overflow-hidden bg-[#ECE7DF] shadow-sm"
+              onClick={() => setSelectedImage(image)}
+              className="group relative aspect-[4/3] rounded-[22px] overflow-hidden bg-[#ECE7DF] shadow-sm cursor-pointer"
             >
               <img
                 src={image.image || image.src}
@@ -111,6 +177,49 @@ export default function Gallery() {
         </div>
 
       </div>
+
+      {/* Lightbox / Image Preview Modal */}
+      {selectedImage && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm p-4 animate-in fade-in duration-200"
+          onClick={() => setSelectedImage(null)}
+        >
+          <div
+            className="relative max-w-4xl w-full bg-[#FAF8F5] rounded-2xl overflow-hidden shadow-2xl p-3 sm:p-4"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <button
+              type="button"
+              onClick={() => setSelectedImage(null)}
+              className="absolute top-4 right-4 z-10 w-9 h-9 rounded-full bg-white/90 text-[#173727] flex items-center justify-center hover:bg-white shadow-md transition-all cursor-pointer"
+              aria-label="Close"
+            >
+              <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <path d="M18 6L6 18M6 6l12 12" />
+              </svg>
+            </button>
+
+            <div className="relative aspect-[16/10] sm:aspect-[16/9] w-full rounded-xl overflow-hidden bg-black/5">
+              <img
+                src={selectedImage.image || selectedImage.src}
+                alt={selectedImage.title || selectedImage.alt || 'Gallery Preview'}
+                className="w-full h-full object-contain"
+              />
+            </div>
+
+            {(selectedImage.title || selectedImage.alt) && (
+              <div className="pt-3 px-2 text-center">
+                <h3
+                  className="text-lg sm:text-xl font-semibold text-[#173727]"
+                  style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
+                >
+                  {selectedImage.title || selectedImage.alt}
+                </h3>
+              </div>
+            )}
+          </div>
+        </div>
+      )}
     </section>
   );
 }

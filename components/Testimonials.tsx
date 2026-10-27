@@ -9,12 +9,20 @@ export default function Testimonials() {
   // 100% direct JSON access (Zero fallback text)
   const testimonialsData = (websiteData as any)?.categories?.Yoga?.sections?.Testimonials?.variants?.YogaTestimonials1;
 
+  const testimonials = testimonialsData?.items || [];
+
   if (!testimonialsData) return null;
 
-  const testimonials = testimonialsData.items || [];
+  const handlePrevTestimonial = () => {
+    setActiveIndex((prev) => (prev === 0 ? testimonials.length - 1 : prev - 1));
+  };
+
+  const handleNextTestimonial = () => {
+    setActiveIndex((prev) => (prev === testimonials.length - 1 ? 0 : prev + 1));
+  };
 
   return (
-    <section className="bg-[#FAF8F5] pt-0 pb-16 lg:pb-24 overflow-hidden">
+    <section className="bg-[#FAF8F5] pt-0 pb-6 sm:pb-8 lg:pb-10 overflow-hidden">
       <div className="max-w-[1380px] mx-auto px-6 sm:px-10 lg:px-12">
         
         <div className="mb-10 lg:mb-14">
@@ -39,7 +47,7 @@ export default function Testimonials() {
           </p>
         </div>
 
-        {/* Mobile View: Single Card with Pagination Dots */}
+        {/* Mobile View: Single Card with Pagination Dots & Arrows */}
         <div className="block md:hidden">
           <div className="min-h-[220px] flex flex-col justify-between items-start transition-all duration-300">
             <div>
@@ -68,22 +76,64 @@ export default function Testimonials() {
             </h4>
           </div>
 
-          {/* Dots Indicator */}
-          <div className="flex items-center gap-2 mt-8">
-            {testimonials.map((_: any, idx: number) => (
+          {/* Dots with Previous and Next Arrow Controls */}
+          {testimonials.length > 1 ? (
+            <div className="flex items-center justify-center gap-3 mt-8">
               <button
-                key={idx}
                 type="button"
-                onClick={() => setActiveIndex(idx)}
-                aria-label={`Go to slide ${idx + 1}`}
-                className={`h-2.5 rounded-full transition-all duration-300 ${
-                  activeIndex === idx
-                    ? 'w-7 bg-[#13402E]'
-                    : 'w-2.5 bg-[#C59B51]/40 hover:bg-[#C59B51]'
-                }`}
-              />
-            ))}
-          </div>
+                onClick={handlePrevTestimonial}
+                aria-label="Previous testimonial"
+                className="w-8 h-8 rounded-full border border-[#D9D3C7] bg-white text-[#173727] flex items-center justify-center hover:bg-[#FAF8F5] transition-colors shadow-xs cursor-pointer"
+              >
+                <svg className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                  <path d="m15 18-6-6 6-6" />
+                </svg>
+              </button>
+
+              <div className="flex items-center gap-2">
+                {testimonials.map((_: any, idx: number) => (
+                  <button
+                    key={idx}
+                    type="button"
+                    onClick={() => setActiveIndex(idx)}
+                    aria-label={`Go to slide ${idx + 1}`}
+                    className={`h-2.5 rounded-full transition-all duration-300 cursor-pointer ${
+                      activeIndex === idx
+                        ? 'w-7 bg-[#13402E]'
+                        : 'w-2.5 bg-[#C59B51]/40 hover:bg-[#C59B51]'
+                    }`}
+                  />
+                ))}
+              </div>
+
+              <button
+                type="button"
+                onClick={handleNextTestimonial}
+                aria-label="Next testimonial"
+                className="w-8 h-8 rounded-full border border-[#D9D3C7] bg-white text-[#173727] flex items-center justify-center hover:bg-[#FAF8F5] transition-colors shadow-xs cursor-pointer"
+              >
+                <svg className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                  <path d="m9 18 6-6-6-6" />
+                </svg>
+              </button>
+            </div>
+          ) : (
+            <div className="flex items-center justify-center gap-2 mt-8">
+              {testimonials.map((_: any, idx: number) => (
+                <button
+                  key={idx}
+                  type="button"
+                  onClick={() => setActiveIndex(idx)}
+                  aria-label={`Go to slide ${idx + 1}`}
+                  className={`h-2.5 rounded-full transition-all duration-300 cursor-pointer ${
+                    activeIndex === idx
+                      ? 'w-7 bg-[#13402E]'
+                      : 'w-2.5 bg-[#C59B51]/40 hover:bg-[#C59B51]'
+                  }`}
+                />
+              ))}
+            </div>
+          )}
         </div>
 
         {/* Desktop / Tablet View: 3-Column Grid */}

@@ -285,6 +285,20 @@ export default function ContactSection() {
 
         </div>
 
+        {/* Map Section */}
+        <div className="rounded-[26px] overflow-hidden border border-[#ECE5D8] shadow-sm bg-white">
+          <iframe
+            title="Studio Location Map"
+            src={`https://maps.google.com/maps?q=${encodeURIComponent(
+              contactData.studio.address || contactData.studio.location || commonData.address || 'Yoga Studio'
+            )}&t=&z=14&ie=UTF8&iwloc=&output=embed`}
+            className="w-full h-[320px] sm:h-[400px] border-0"
+            loading="lazy"
+            allowFullScreen
+            referrerPolicy="no-referrer-when-downgrade"
+          />
+        </div>
+
       </div>
 
       {/* Aesthetic Yoga-Themed Thank You Modal */}

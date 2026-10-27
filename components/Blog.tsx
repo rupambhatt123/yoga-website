@@ -9,17 +9,7 @@ export default function BlogSection() {
 
   const blogSectionData = (websiteData as any)?.categories?.Yoga?.sections?.Blog?.variants?.YogaBlog1;
 
-  // featuredPost agar na mile to posts array ke pehle item ko automatically le lega
-  const featuredPost =
-    blogSectionData?.featuredPost ||
-    blogSectionData?.posts?.[0] || {
-      title: 'Bhakti Yoga: Devotion and Love to Warm Our Hearts',
-      date: 'June 16, 2021',
-      description:
-        'Discover how the path of Bhakti Yoga can open your heart, bring more love into your life, and create a deeper connection with yourself and the world around you.',
-      image: '/m7.png',
-      link: '/blog-detail',
-    };
+  const featuredPost = blogSectionData?.featuredPost || blogSectionData?.posts?.[0];
 
   useEffect(() => {
     const img = new Image();
@@ -52,11 +42,11 @@ export default function BlogSection() {
     };
 
     img.onerror = () => {
-      setLotusSrc('/lotus(1).png');
+      setLotusSrc('/lotus.png');
     };
   }, []);
 
-  if (!blogSectionData) return null;
+  if (!blogSectionData || !featuredPost) return null;
 
   return (
     <section className="bg-[#FAF8F5] py-20 lg:py-28 overflow-hidden">
@@ -65,7 +55,7 @@ export default function BlogSection() {
           <div className="lg:col-span-7">
             <div className="flex items-center gap-3.5 mb-5">
               <span className="text-[12px] uppercase tracking-[0.28em] font-medium text-[#2E4738]">
-                {blogSectionData.badge || 'Resources'}
+                {blogSectionData.badge}
               </span>
               <div className="w-12 h-[1.5px] bg-[#C59B51]" />
             </div>
@@ -74,7 +64,7 @@ export default function BlogSection() {
               className="text-5xl sm:text-6xl lg:text-[66px] leading-[1.04] text-[#193727] font-normal tracking-tight whitespace-pre-line"
               style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
             >
-              {blogSectionData.title || 'Going Deeper with\nYoga'}
+              {blogSectionData.title}
             </h2>
           </div>
 
@@ -84,9 +74,6 @@ export default function BlogSection() {
                 src={lotusSrc || '/lotus.png'}
                 alt="Lotus Logo"
                 className="w-full h-full object-contain"
-                onError={(e) => {
-                  (e.target as HTMLImageElement).src = '/lotus(1).png';
-                }}
                 style={{
                   filter: 'contrast(115%) brightness(95%)',
                 }}
@@ -107,8 +94,8 @@ export default function BlogSection() {
 
             <div className="relative z-10 rounded-[28px] overflow-hidden bg-[#ECE7DF] shadow-sm aspect-[16/11] sm:aspect-[16/10] w-full">
               <img
-                src={featuredPost?.image || '/m7.png'}
-                alt={featuredPost?.title || 'Featured Blog'}
+                src={featuredPost.image}
+                alt={featuredPost.title}
                 className="w-full h-full object-cover object-center hover:scale-[1.02] transition-transform duration-700"
               />
             </div>
@@ -119,7 +106,7 @@ export default function BlogSection() {
               className="text-3xl sm:text-4xl lg:text-[42px] leading-[1.16] text-[#193626] font-normal mb-5"
               style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
             >
-              {featuredPost?.title}
+              {featuredPost.title}
             </h3>
 
             <div className="flex items-center gap-2.5 mb-5 text-[#B4833D]">
@@ -135,16 +122,16 @@ export default function BlogSection() {
                 <circle cx="12" cy="18" r="1" fill="currentColor" />
               </svg>
               <span className="text-[14px] font-medium tracking-wide text-[#2C4837]">
-                {featuredPost?.date}
+                {featuredPost.date}
               </span>
             </div>
 
             <p className="text-[14.5px] sm:text-[15.5px] leading-[1.7] text-[#3A5343] mb-8 font-normal">
-              {featuredPost?.description}
+              {featuredPost.description}
             </p>
 
             <Link
-              href={featuredPost?.link || '/blog-detail'}
+              href={featuredPost.link || '/blog-detail'}
               className="inline-flex items-center gap-4 bg-[#B47F39] hover:bg-[#9E6E2E] text-white pl-7 pr-2.5 py-2.5 rounded-full transition-all duration-300 shadow-sm cursor-pointer group"
             >
               <span className="text-sm font-medium tracking-wide">

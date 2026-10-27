@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { ArrowRight } from 'lucide-react';
 import websiteData from '@/data/websiteData.json';
 
 const pillSvgMap: Record<string, React.ReactNode> = {
@@ -46,6 +47,14 @@ export default function PackageSection() {
   const plans = yogaData.plans || yogaData.items || [];
   const featurePills = yogaData.featurePills || [];
   const heroImg = yogaData.heroImage || '/m1.png';
+
+  const handlePrevPlan = () => {
+    setActivePlanIndex((prev) => (prev === 0 ? plans.length - 1 : prev - 1));
+  };
+
+  const handleNextPlan = () => {
+    setActivePlanIndex((prev) => (prev === plans.length - 1 ? 0 : prev + 1));
+  };
 
   return (
     <div className="bg-[#FAF8F5] relative overflow-hidden">
@@ -171,28 +180,72 @@ export default function PackageSection() {
 
                 <a
                   href="/contact"
-                  className="w-full py-2.5 rounded-full text-center text-xs font-medium bg-[#2A4432] hover:bg-[#1E3425] text-white transition-colors duration-300"
+                  className="inline-flex items-center justify-center gap-2 w-full py-2.5 rounded-full text-center text-xs font-medium bg-[#2A4432] hover:bg-[#1E3425] text-white transition-colors duration-300 group"
                 >
-                  Choose Plan
+                  <span>Choose Plan</span>
+                  <ArrowRight size={14} className="stroke-[2.2] transition-transform group-hover:translate-x-0.5" />
                 </a>
               </div>
             </div>
 
-            <div className="flex items-center justify-center gap-2 mt-6">
-              {plans.map((_: any, idx: number) => (
+            {/* Dots with Previous and Next Arrow Controls */}
+            {plans.length > 1 ? (
+              <div className="flex items-center justify-center gap-3 mt-6">
                 <button
-                  key={idx}
                   type="button"
-                  onClick={() => setActivePlanIndex(idx)}
-                  aria-label={`Go to plan ${idx + 1}`}
-                  className={`h-2.5 rounded-full transition-all duration-300 cursor-pointer ${
-                    activePlanIndex === idx
-                      ? 'w-7 bg-[#173727]'
-                      : 'w-2.5 bg-[#C59B51]/40 hover:bg-[#C59B51]'
-                  }`}
-                />
-              ))}
-            </div>
+                  onClick={handlePrevPlan}
+                  aria-label="Previous package"
+                  className="w-8 h-8 rounded-full border border-[#D9D3C7] bg-white text-[#173727] flex items-center justify-center hover:bg-[#FAF8F5] transition-colors shadow-xs cursor-pointer"
+                >
+                  <svg className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                    <path d="m15 18-6-6 6-6" />
+                  </svg>
+                </button>
+
+                <div className="flex items-center gap-2">
+                  {plans.map((_: any, idx: number) => (
+                    <button
+                      key={idx}
+                      type="button"
+                      onClick={() => setActivePlanIndex(idx)}
+                      aria-label={`Go to plan ${idx + 1}`}
+                      className={`h-2.5 rounded-full transition-all duration-300 cursor-pointer ${
+                        activePlanIndex === idx
+                          ? 'w-7 bg-[#173727]'
+                          : 'w-2.5 bg-[#C59B51]/40 hover:bg-[#C59B51]'
+                      }`}
+                    />
+                  ))}
+                </div>
+
+                <button
+                  type="button"
+                  onClick={handleNextPlan}
+                  aria-label="Next package"
+                  className="w-8 h-8 rounded-full border border-[#D9D3C7] bg-white text-[#173727] flex items-center justify-center hover:bg-[#FAF8F5] transition-colors shadow-xs cursor-pointer"
+                >
+                  <svg className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                    <path d="m9 18 6-6-6-6" />
+                  </svg>
+                </button>
+              </div>
+            ) : (
+              <div className="flex items-center justify-center gap-2 mt-6">
+                {plans.map((_: any, idx: number) => (
+                  <button
+                    key={idx}
+                    type="button"
+                    onClick={() => setActivePlanIndex(idx)}
+                    aria-label={`Go to plan ${idx + 1}`}
+                    className={`h-2.5 rounded-full transition-all duration-300 cursor-pointer ${
+                      activePlanIndex === idx
+                        ? 'w-7 bg-[#173727]'
+                        : 'w-2.5 bg-[#C59B51]/40 hover:bg-[#C59B51]'
+                    }`}
+                  />
+                ))}
+              </div>
+            )}
           </div>
         )}
 
@@ -243,9 +296,10 @@ export default function PackageSection() {
 
                 <a
                   href="/contact"
-                  className="w-full py-3.5 rounded-full text-center text-sm font-medium bg-[#2A4432] hover:bg-[#1E3425] text-white transition-colors duration-300"
+                  className="inline-flex items-center justify-center gap-2 w-full py-3.5 rounded-full text-center text-sm font-medium bg-[#2A4432] hover:bg-[#1E3425] text-white transition-colors duration-300 group"
                 >
-                  Choose Plan
+                  <span>Choose Plan</span>
+                  <ArrowRight size={16} className="stroke-[2.2] transition-transform group-hover:translate-x-1" />
                 </a>
               </div>
             </div>

@@ -6,11 +6,22 @@ import websiteData from '@/data/websiteData.json';
 
 export default function Gallery() {
   const [motifSrc, setMotifSrc] = useState<string | null>(null);
+  const [selectedImage, setSelectedImage] = useState<any | null>(null);
 
   const galleryData = (websiteData as any).categories.Yoga.sections.Gallery.variants.YogaGallery1;
 
   const row1Images = galleryData.items.slice(0, 3);
   const row2Images = galleryData.items.slice(3, 7);
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        setSelectedImage(null);
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, []);
 
   useEffect(() => {
     const img = new Image();
@@ -62,26 +73,36 @@ export default function Gallery() {
               {row1Images.map((item: any, idx: number) => {
                 const colSpanClass = idx === 0 ? 'col-span-5 aspect-[1.35/1]' : idx === 1 ? 'col-span-4 aspect-[1.08/1]' : 'col-span-3 aspect-[0.82/1]';
                 return (
-                  <div key={item.id || idx} className={`${colSpanClass} rounded-[16px] overflow-hidden bg-[#ECE7DF] shadow-sm`}>
+                  <button
+                    key={item.id || idx}
+                    type="button"
+                    onClick={() => setSelectedImage(item)}
+                    className={`${colSpanClass} rounded-[16px] overflow-hidden bg-[#ECE7DF] shadow-sm cursor-pointer border-0 p-0 text-left block w-full focus:outline-none`}
+                  >
                     <img
                       src={item.image}
                       alt={item.title || 'Yoga Gallery'}
                       className="w-full h-full object-cover object-center hover:scale-105 transition-transform duration-500"
                     />
-                  </div>
+                  </button>
                 );
               })}
             </div>
 
             <div className="grid grid-cols-12 gap-2.5 sm:gap-3">
               {row2Images.map((item: any, idx: number) => (
-                <div key={item.id || idx} className="col-span-3 aspect-[0.95/1] rounded-[16px] overflow-hidden bg-[#ECE7DF] shadow-sm">
+                <button
+                  key={item.id || idx}
+                  type="button"
+                  onClick={() => setSelectedImage(item)}
+                  className="col-span-3 aspect-[0.95/1] rounded-[16px] overflow-hidden bg-[#ECE7DF] shadow-sm cursor-pointer border-0 p-0 text-left block w-full focus:outline-none"
+                >
                   <img
                     src={item.image}
                     alt={item.title || 'Yoga Gallery'}
                     className="w-full h-full object-cover object-center hover:scale-105 transition-transform duration-500"
                   />
-                </div>
+                </button>
               ))}
             </div>
 
@@ -135,6 +156,49 @@ export default function Gallery() {
 
         </div>
       </div>
+
+      {/* Lightbox / Full Image Preview Modal */}
+      {selectedImage && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm p-4 animate-in fade-in duration-200"
+          onClick={() => setSelectedImage(null)}
+        >
+          <div
+            className="relative max-w-4xl w-full bg-[#FAF8F5] rounded-2xl overflow-hidden shadow-2xl p-3 sm:p-4"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <button
+              type="button"
+              onClick={() => setSelectedImage(null)}
+              className="absolute top-4 right-4 z-10 w-9 h-9 rounded-full bg-white/90 text-[#173727] flex items-center justify-center hover:bg-white shadow-md transition-all cursor-pointer"
+              aria-label="Close"
+            >
+              <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <path d="M18 6L6 18M6 6l12 12" />
+              </svg>
+            </button>
+
+            <div className="relative aspect-[16/10] sm:aspect-[16/9] w-full rounded-xl overflow-hidden bg-black/5">
+              <img
+                src={selectedImage.image}
+                alt={selectedImage.title || 'Gallery Preview'}
+                className="w-full h-full object-contain"
+              />
+            </div>
+
+            {selectedImage.title && (
+              <div className="pt-3 px-2 text-center">
+                <h3
+                  className="text-lg sm:text-xl font-semibold text-[#173727]"
+                  style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
+                >
+                  {selectedImage.title}
+                </h3>
+              </div>
+            )}
+          </div>
+        </div>
+      )}
     </section>
   );
 }

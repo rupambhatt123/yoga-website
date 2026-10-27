@@ -2,9 +2,13 @@
 
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import websiteData from '@/data/websiteData.json';
 
 export default function About() {
+  const pathname = usePathname();
+  const isAboutPage = pathname === '/about';
+
   const aboutData = (websiteData as any)?.categories?.Yoga?.sections?.About?.variants?.YogaAbout1 || {
     badge: 'About Us',
     description: 'Mariah is a Yoga Instructor from New Hampshire. She attended Ithaca College, where she earned a degree in clinical exercise science. Her specialties are Ashtanga yoga, Hatha yoga, and Kundalini yoga.',
@@ -58,11 +62,11 @@ export default function About() {
   }, [aboutData.motifImage]);
 
   return (
-    <section className="bg-[#FAF8F5] overflow-hidden w-full my-0 py-0">
+    <section className="bg-[#FAF8F5] overflow-hidden w-full pt-8 sm:pt-12 pb-6 sm:pb-10">
       <div className="grid grid-cols-1 lg:grid-cols-12 items-stretch">
         
-        {/* Left Text & Motif Column - Compact spacing on mobile */}
-        <div className="lg:col-span-6 flex flex-col justify-center items-center text-center px-4 sm:px-10 lg:px-14 py-5 sm:py-8 lg:py-16">
+        {/* Left Text & Motif Column */}
+        <div className="lg:col-span-6 flex flex-col justify-center items-center text-center px-4 sm:px-10 lg:px-14 py-4 sm:py-6 lg:py-10">
           <div className="max-w-[440px] w-full flex flex-col items-center">
             
             {/* Motif Image */}
@@ -86,33 +90,35 @@ export default function About() {
             </p>
 
             {/* CTA Button */}
-            <div className="mt-3.5 sm:mt-5">
-              <Link
-                href={aboutData.ctaLink || '/about'}
-                className="inline-flex items-center gap-2.5 sm:gap-3 bg-[#B28243] hover:bg-[#9B6E32] text-white pl-4 sm:pl-5 pr-1.5 sm:pr-2 py-1.5 sm:py-2 rounded-full shadow-sm transition group cursor-pointer"
-              >
-                <span className="text-white text-xs sm:text-sm leading-none">
-                  &#10033;
-                </span>
+            {!isAboutPage && (
+              <div className="mt-3.5 sm:mt-5">
+                <Link
+                  href={aboutData.ctaLink || '/about'}
+                  className="inline-flex items-center gap-2.5 sm:gap-3 bg-[#B28243] hover:bg-[#9B6E32] text-white pl-4 sm:pl-5 pr-1.5 sm:pr-2 py-1.5 sm:py-2 rounded-full shadow-sm transition group cursor-pointer"
+                >
+                  <span className="text-white text-xs sm:text-sm leading-none">
+                    &#10033;
+                  </span>
 
-                <span className="text-xs sm:text-[13px] font-medium tracking-wide">
-                  {aboutData.ctaText || 'About Us'}
-                </span>
+                  <span className="text-xs sm:text-[13px] font-medium tracking-wide">
+                    {aboutData.ctaText || 'About Us'}
+                  </span>
 
-                <span className="w-6 h-6 sm:w-7 sm:h-7 rounded-full bg-white text-[#B28243] flex items-center justify-center transition-transform group-hover:translate-x-0.5">
-                  <svg className="w-3 h-3 sm:w-3.5 sm:h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                    <path d="M5 12h14" />
-                    <path d="m12 5 7 7-7 7" />
-                  </svg>
-                </span>
-              </Link>
-            </div>
+                  <span className="w-6 h-6 sm:w-7 sm:h-7 rounded-full bg-white text-[#B28243] flex items-center justify-center transition-transform group-hover:translate-x-0.5">
+                    <svg className="w-3 h-3 sm:w-3.5 sm:h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                      <path d="M5 12h14" />
+                      <path d="m12 5 7 7-7 7" />
+                    </svg>
+                  </span>
+                </Link>
+              </div>
+            )}
 
           </div>
         </div>
 
-        {/* Right Photo Column - Perfectly compact for phone view */}
-        <div className="lg:col-span-6 relative w-full h-[240px] xs:h-[280px] sm:h-[340px] lg:h-full min-h-0 lg:min-h-[460px] overflow-hidden">
+        {/* Right Photo Column */}
+        <div className="lg:col-span-6 relative w-full h-[240px] xs:h-[280px] sm:h-[340px] lg:h-full min-h-0 lg:min-h-[440px] overflow-hidden mb-4 lg:mb-0">
           <img
             src={aboutData.image || '/m1.png'}
             alt="Yoga Instructor"

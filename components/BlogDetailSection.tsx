@@ -4,65 +4,9 @@ import Link from 'next/link';
 import websiteData from '@/data/websiteData.json';
 
 export default function BlogDetailSection() {
-  const blogDetailData = (websiteData as any)?.categories?.Yoga?.sections?.BlogDetail?.variants?.YogaBlogDetail1 || {
-    title: 'The Amazing Health Benefits of Yoga for a Better Life',
-    date: 'October 12, 2026',
-    author: 'By Admin',
-    heroImage: '/m1.png',
-    intro: 'Yoga is more than just a form of exercise — it is a holistic practice that brings balance to the body, mind and soul. In today\'s fast-paced world, stress, anxiety and unhealthy lifestyle habits have become common. Practicing yoga regularly can help you stay physically fit, mentally calm and emotionally strong.',
-    sections: [
-      {
-        number: '1',
-        title: 'Improves Physical Health',
-        description: 'Yoga helps improve flexibility, strength, posture and overall physical fitness. Regular practice can relieve muscular tension, improve circulation and support better body alignment.',
-        image: 'https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&w=600&q=80'
-      },
-      {
-        number: '2',
-        title: 'Reduces Stress and Anxiety',
-        description: 'Breathing exercises and mindfulness in yoga help calm the nervous system, reduce stress and promote relaxation. It encourages positive thinking and helps you manage daily challenges with greater ease.',
-        image: null
-      },
-      {
-        number: '3',
-        title: 'Boosts Mental Well-Being',
-        description: 'Yoga improves focus, concentration and memory. It helps clear mental clutter, enhances self-awareness and promotes a more positive outlook on life.',
-        image: '/m3.png'
-      },
-      {
-        number: '4',
-        title: 'Supports Emotional Balance',
-        description: 'Through mindful movement and breathing, yoga helps release negative emotions, promotes inner peace and builds emotional resilience. It encourages a balanced and happier state of mind.',
-        image: null
-      }
-    ],
-    recentPosts: [
-      {
-        id: 1,
-        title: 'How Yoga Helps Reduce Stress',
-        date: 'October 10, 2026',
-        image: 'https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&w=400&q=80'
-      },
-      {
-        id: 2,
-        title: 'Top 5 Breathing Techniques in Yoga',
-        date: 'October 08, 2026',
-        image: 'https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&w=400&q=80'
-      },
-      {
-        id: 3,
-        title: 'Yoga for Better Posture and Flexibility',
-        date: 'October 05, 2026',
-        image: 'https://images.unsplash.com/photo-1518611012118-696072aa579a?auto=format&fit=crop&w=400&q=80'
-      },
-      {
-        id: 4,
-        title: 'The Role of Nutrition in a Yogic Lifestyle',
-        date: 'October 02, 2026',
-        image: 'https://images.unsplash.com/photo-1498837167922-ddd27525d352?auto=format&fit=crop&w=400&q=80'
-      }
-    ]
-  };
+  const blogDetailData = (websiteData as any)?.categories?.Yoga?.sections?.BlogDetail?.variants?.YogaBlogDetail1;
+
+  if (!blogDetailData) return null;
 
   return (
     <section className="bg-[#FAF8F5] pt-10 sm:pt-14 pb-20 px-6 sm:px-10 lg:px-12 text-stone-800">
@@ -114,7 +58,7 @@ export default function BlogDetailSection() {
             {blogDetailData.intro}
           </p>
 
-          {blogDetailData.sections.map((section: any, idx: number) => {
+          {blogDetailData.sections?.map((section: any, idx: number) => {
             if (section.image) {
               return (
                 <div key={idx} className="grid grid-cols-1 md:grid-cols-12 gap-6 items-center pt-2">
@@ -176,7 +120,7 @@ export default function BlogDetailSection() {
             </div>
 
             <div className="space-y-4 pt-1">
-              {blogDetailData.recentPosts.map((post: any) => (
+              {blogDetailData.recentPosts?.map((post: any) => (
                 <Link
                   key={post.id}
                   href="/blog-detail"

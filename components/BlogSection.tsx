@@ -10,13 +10,20 @@ export default function BlogSection() {
 
   const posts = blogSectionData?.posts || (blogSectionData?.featuredPost ? [blogSectionData.featuredPost] : []);
 
-  const [currentPage, setCurrentPage] = useState(1);
   const [activeMobileIndex, setActiveMobileIndex] = useState(0);
 
   if (!blogSectionData) return null;
 
+  const handlePrevMobile = () => {
+    setActiveMobileIndex((prev) => (prev === 0 ? posts.length - 1 : prev - 1));
+  };
+
+  const handleNextMobile = () => {
+    setActiveMobileIndex((prev) => (prev === posts.length - 1 ? 0 : prev + 1));
+  };
+
   return (
-    <section className="bg-[#FAF8F5] py-12 sm:py-16 lg:py-24 relative overflow-hidden">
+    <section className="bg-[#FAF8F5] pt-4 sm:pt-6 lg:pt-8 pb-12 sm:pb-16 lg:pb-24 relative overflow-hidden">
       
       <div 
         className="absolute top-10 right-0 w-[420px] h-[500px] pointer-events-none opacity-20 bg-no-repeat bg-right-top bg-contain"
@@ -44,7 +51,7 @@ export default function BlogSection() {
             </div>
 
             <h2
-              className="text-3xl sm:text-6xl lg:text-[68px] leading-[1.08] sm:leading-[1.05] text-[#173727] font-serif tracking-tight whitespace-pre-line"
+              className="text-[28px] xs:text-3xl sm:text-6xl lg:text-[68px] leading-[1.12] sm:leading-[1.05] text-[#173727] font-serif tracking-tight whitespace-normal sm:whitespace-pre-line"
               style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
             >
               {blogSectionData.title}
@@ -79,9 +86,10 @@ export default function BlogSection() {
                 <div className="absolute -top-2.5 -left-2.5 w-24 h-24 rounded-[20px] bg-[#5B7966] -z-0" />
                 <div className="relative z-10 rounded-[22px] overflow-hidden shadow-sm aspect-[16/10] bg-[#ECE7DF] w-full">
                   <img
-                    src={posts[activeMobileIndex]?.image || '/m7.png'}
+                    key={activeMobileIndex}
+                    src={posts[activeMobileIndex]?.image}
                     alt={posts[activeMobileIndex]?.title}
-                    className="w-full h-full object-cover object-center"
+                    className="w-full h-full object-cover object-center transition-all duration-500"
                   />
                 </div>
               </div>
@@ -144,21 +152,48 @@ export default function BlogSection() {
               </div>
             </div>
 
-            <div className="flex items-center justify-center gap-2 mt-8">
-              {posts.map((_: any, idx: number) => (
+            {/* Mobile Pagination Controls */}
+            {posts.length > 1 && (
+              <div className="flex items-center justify-center gap-3 mt-8">
                 <button
-                  key={idx}
                   type="button"
-                  onClick={() => setActiveMobileIndex(idx)}
-                  aria-label={`Go to blog post ${idx + 1}`}
-                  className={`h-2.5 rounded-full transition-all duration-300 cursor-pointer ${
-                    activeMobileIndex === idx
-                      ? 'w-7 bg-[#173727]'
-                      : 'w-2.5 bg-[#C59B51]/40 hover:bg-[#C59B51]'
-                  }`}
-                />
-              ))}
-            </div>
+                  onClick={handlePrevMobile}
+                  aria-label="Previous blog post"
+                  className="w-8 h-8 rounded-full border border-[#D9D3C7] bg-white text-[#173727] flex items-center justify-center hover:bg-[#FAF8F5] transition-colors shadow-xs cursor-pointer"
+                >
+                  <svg className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                    <path d="m15 18-6-6 6-6" />
+                  </svg>
+                </button>
+
+                <div className="flex items-center gap-2">
+                  {posts.map((_: any, idx: number) => (
+                    <button
+                      key={idx}
+                      type="button"
+                      onClick={() => setActiveMobileIndex(idx)}
+                      aria-label={`Go to blog post ${idx + 1}`}
+                      className={`h-2.5 rounded-full transition-all duration-300 cursor-pointer ${
+                        activeMobileIndex === idx
+                          ? 'w-7 bg-[#173727]'
+                          : 'w-2.5 bg-[#C59B51]/40 hover:bg-[#C59B51]'
+                      }`}
+                    />
+                  ))}
+                </div>
+
+                <button
+                  type="button"
+                  onClick={handleNextMobile}
+                  aria-label="Next blog post"
+                  className="w-8 h-8 rounded-full border border-[#D9D3C7] bg-white text-[#173727] flex items-center justify-center hover:bg-[#FAF8F5] transition-colors shadow-xs cursor-pointer"
+                >
+                  <svg className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                    <path d="m9 18 6-6-6-6" />
+                  </svg>
+                </button>
+              </div>
+            )}
           </div>
         )}
 
@@ -182,7 +217,7 @@ export default function BlogSection() {
 
                   <div className="relative z-10 rounded-[28px] overflow-hidden shadow-sm aspect-[1.55/1] bg-[#ECE7DF] w-full">
                     <img
-                      src={post.image || '/m7.png'}
+                      src={post.image}
                       alt={post.title}
                       className="w-full h-full object-cover object-center transition-transform duration-700 hover:scale-[1.02]"
                     />
@@ -253,45 +288,6 @@ export default function BlogSection() {
               </div>
             );
           })}
-        </div>
-
-        <div className="flex items-center justify-center gap-3 mt-14 sm:mt-24 pt-4 sm:pt-6">
-          <button
-            type="button"
-            onClick={() => setCurrentPage((p) => Math.max(1, p - 1))}
-            className="w-10 h-10 sm:w-11 sm:h-11 rounded-full border border-[#D9D3C7] bg-white text-[#173727] flex items-center justify-center hover:bg-[#FAF8F5] transition-colors shadow-xs"
-            aria-label="Previous Page"
-          >
-            <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-              <path d="m15 18-6-6 6-6" />
-            </svg>
-          </button>
-
-          {[1, 2, 3, 4].map((page) => (
-            <button
-              key={page}
-              type="button"
-              onClick={() => setCurrentPage(page)}
-              className={`w-10 h-10 sm:w-11 sm:h-11 rounded-full text-xs sm:text-sm font-medium transition-all shadow-xs flex items-center justify-center ${
-                currentPage === page
-                  ? 'bg-[#173727] text-white shadow-sm'
-                  : 'bg-white border border-[#D9D3C7] text-[#173727] hover:bg-[#FAF8F5]'
-              }`}
-            >
-              {page}
-            </button>
-          ))}
-
-          <button
-            type="button"
-            onClick={() => setCurrentPage((p) => Math.min(4, p + 1))}
-            className="w-10 h-10 sm:w-11 sm:h-11 rounded-full border border-[#D9D3C7] bg-white text-[#173727] flex items-center justify-center hover:bg-[#FAF8F5] transition-colors shadow-xs"
-            aria-label="Next Page"
-          >
-            <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-              <path d="m9 18 6-6-6-6" />
-            </svg>
-          </button>
         </div>
 
       </div>
