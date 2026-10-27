@@ -99,28 +99,11 @@ export default function WhyChooseUs() {
   if (!whyChooseUsData) return null;
 
   return (
-    <section className="py-12 sm:py-20 lg:py-28 px-4 sm:px-10 lg:px-16 bg-[#FAF8F5] overflow-hidden">
-      <div className="max-w-[1380px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 sm:gap-12 lg:gap-16 items-center">
+    <section className="pt-2 sm:pt-6 lg:pt-8 pb-10 sm:pb-16 lg:pb-20 px-4 sm:px-10 lg:px-16 bg-[#FAF8F5] overflow-hidden">
+      <div className="max-w-[1380px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 sm:gap-10 lg:gap-16 items-center">
         
-        <motion.div
-          initial={{ opacity: 0, x: -30 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-          className="lg:col-span-5 relative w-full max-w-[420px] sm:max-w-none mx-auto"
-        >
-          <div className="absolute -top-4 -left-4 w-48 h-48 bg-[#D8E2D8] -z-0 rounded-[28px] hidden sm:block" />
-          <div className="relative z-10 rounded-[22px] sm:rounded-[28px] overflow-hidden shadow-sm aspect-[4/4.9] bg-[#ECE7DF] w-full">
-            <img
-              src={whyChooseUsData.heroImage}
-              alt={whyChooseUsData.titleLine1}
-              className="w-full h-full object-cover object-center"
-            />
-          </div>
-          <div className="absolute -bottom-4 -right-4 w-48 h-48 bg-[#D8E2D8] -z-0 rounded-[28px] hidden sm:block" />
-        </motion.div>
-
-        <div className="lg:col-span-7 flex flex-col items-center text-center w-full">
+        {/* Text and Features Content (Mobile pe pehle dikhega) */}
+        <div className="order-1 lg:order-2 lg:col-span-7 flex flex-col items-center text-center w-full">
           <div className="w-14 sm:w-16 h-10 sm:h-12 mb-2 sm:mb-3 flex items-center justify-center">
             <img
               src={lotusSrc || whyChooseUsData.motifImage}
@@ -154,7 +137,7 @@ export default function WhyChooseUs() {
             {whyChooseUsData.description}
           </p>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-y-6 sm:gap-y-8 gap-x-6 sm:gap-x-8 mt-8 sm:mt-12 w-full text-left">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-y-5 sm:gap-y-8 gap-x-6 sm:gap-x-8 mt-6 sm:mt-12 w-full text-left">
             {features.map((item: any, index: number) => (
               <div key={item.id || index} className="flex items-start gap-3.5 sm:gap-4">
                 <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-[#E4ECE4] text-[#1D3E2F] flex items-center justify-center shrink-0">
@@ -175,6 +158,25 @@ export default function WhyChooseUs() {
             ))}
           </div>
         </div>
+
+        {/* Image Container (Mobile pe text ke neeche aayega aur chhota dikhega) */}
+        <motion.div
+          initial={{ opacity: 0, x: -30 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+          className="order-2 lg:order-1 lg:col-span-5 relative w-full max-w-[280px] xs:max-w-[320px] sm:max-w-[420px] lg:max-w-none mx-auto mt-2 sm:mt-4 lg:mt-0"
+        >
+          <div className="absolute -top-4 -left-4 w-48 h-48 bg-[#D8E2D8] -z-0 rounded-[28px] hidden sm:block" />
+          <div className="relative z-10 rounded-[22px] sm:rounded-[28px] overflow-hidden shadow-sm aspect-[4/3] sm:aspect-[4/4.9] bg-[#ECE7DF] w-full">
+            <img
+              src={whyChooseUsData.heroImage}
+              alt={whyChooseUsData.titleLine1}
+              className="w-full h-full object-cover object-center"
+            />
+          </div>
+          <div className="absolute -bottom-4 -right-4 w-48 h-48 bg-[#D8E2D8] -z-0 rounded-[28px] hidden sm:block" />
+        </motion.div>
 
       </div>
     </section>

@@ -62,11 +62,11 @@ export default function About() {
   }, [aboutData.motifImage]);
 
   return (
-    <section className="bg-[#FAF8F5] overflow-hidden w-full pt-8 sm:pt-12 pb-6 sm:pb-10">
+    <section className="bg-[#FAF8F5] overflow-hidden w-full pt-4 sm:pt-6 lg:pt-8 pb-0 sm:pb-2">
       <div className="grid grid-cols-1 lg:grid-cols-12 items-stretch">
         
         {/* Left Text & Motif Column */}
-        <div className="lg:col-span-6 flex flex-col justify-center items-center text-center px-4 sm:px-10 lg:px-14 py-4 sm:py-6 lg:py-10">
+        <div className="lg:col-span-6 flex flex-col justify-center items-center text-center px-4 sm:px-10 lg:px-14 py-3 sm:py-5 lg:py-8">
           <div className="max-w-[440px] w-full flex flex-col items-center">
             
             {/* Motif Image */}
@@ -118,7 +118,7 @@ export default function About() {
         </div>
 
         {/* Right Photo Column */}
-        <div className="lg:col-span-6 relative w-full h-[240px] xs:h-[280px] sm:h-[340px] lg:h-full min-h-0 lg:min-h-[440px] overflow-hidden mb-4 lg:mb-0">
+        <div className="lg:col-span-6 relative w-full h-[240px] xs:h-[280px] sm:h-[340px] lg:h-full min-h-0 lg:min-h-[440px] overflow-hidden mb-0">
           <img
             src={aboutData.image || '/m1.png'}
             alt="Yoga Instructor"

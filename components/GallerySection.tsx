@@ -6,10 +6,12 @@ import websiteData from '@/data/websiteData.json';
 export default function Gallery() {
   const gallerySectionData = (websiteData as any)?.categories?.Yoga?.sections?.Gallery?.variants?.YogaGallery1;
 
-  const categories: string[] = gallerySectionData?.categories || [];
-  const galleryItems = gallerySectionData?.items || [];
+  if (!gallerySectionData) return null;
 
-  const [activeCategory, setActiveCategory] = useState(categories[0] || 'All');
+  const categories: string[] = gallerySectionData.categories;
+  const galleryItems = gallerySectionData.items;
+
+  const [activeCategory, setActiveCategory] = useState(categories[0]);
   const [activeImageIndex, setActiveImageIndex] = useState(0);
   const [selectedImage, setSelectedImage] = useState<any | null>(null);
 
@@ -40,13 +42,11 @@ export default function Gallery() {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, []);
 
-  if (!gallerySectionData) return null;
-
   return (
     <section className="bg-[#FAF8F5] pt-10 sm:pt-14 pb-20 lg:pb-28 overflow-hidden">
       <div className="max-w-[1360px] mx-auto px-6 sm:px-10 lg:px-12">
         
-        <div className="flex flex-col items-center text-center mb-10 sm:mb-12">
+        <div className="flex flex-col items-center text-center mb-8 sm:mb-12">
           
           <div className="flex items-center gap-3.5 mb-4">
             <div className="w-12 h-[1.5px] bg-[#C59B51]" />
@@ -57,7 +57,7 @@ export default function Gallery() {
           </div>
 
           <h2
-            className="text-4xl sm:text-5xl lg:text-[62px] leading-[1.08] tracking-tight mb-8"
+            className="text-4xl sm:text-5xl lg:text-[62px] leading-[1.08] tracking-tight mb-6 sm:mb-8"
             style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
           >
             <span className="block font-semibold text-[#143928]">
@@ -68,7 +68,28 @@ export default function Gallery() {
             </span>
           </h2>
 
-          <div className="flex flex-wrap items-center justify-center gap-2.5 sm:gap-3.5">
+          {/* Mobile Dropdown View */}
+          <div className="w-full max-w-[280px] sm:hidden relative">
+            <select
+              value={activeCategory}
+              onChange={(e) => setActiveCategory(e.target.value)}
+              className="w-full appearance-none bg-white text-[#143928] font-medium text-[14px] px-5 py-3 rounded-full border border-[#DDD5C7] shadow-xs focus:outline-none focus:border-[#355342] pr-10 cursor-pointer"
+            >
+              {categories.map((cat: string) => (
+                <option key={cat} value={cat} className="text-[#143928] py-1">
+                  {cat}
+                </option>
+              ))}
+            </select>
+            <div className="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 text-[#355342]">
+              <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                <path d="m6 9 6 6 6-6" />
+              </svg>
+            </div>
+          </div>
+
+          {/* Desktop/Tablet Pill Buttons View */}
+          <div className="hidden sm:flex flex-wrap items-center justify-center gap-2.5 sm:gap-3.5">
             {categories.map((cat: string) => (
               <button
                 key={cat}
@@ -94,7 +115,7 @@ export default function Gallery() {
             >
               <img
                 src={filteredImages[activeImageIndex]?.image || filteredImages[activeImageIndex]?.src}
-                alt={filteredImages[activeImageIndex]?.title || filteredImages[activeImageIndex]?.alt || 'Yoga Gallery'}
+                alt={filteredImages[activeImageIndex]?.title || filteredImages[activeImageIndex]?.alt}
                 className="w-full h-full object-cover object-center"
               />
             </div>
@@ -169,7 +190,7 @@ export default function Gallery() {
             >
               <img
                 src={image.image || image.src}
-                alt={image.title || image.alt || 'Yoga Gallery'}
+                alt={image.title || image.alt}
                 className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out"
               />
             </div>
@@ -202,7 +223,7 @@ export default function Gallery() {
             <div className="relative aspect-[16/10] sm:aspect-[16/9] w-full rounded-xl overflow-hidden bg-black/5">
               <img
                 src={selectedImage.image || selectedImage.src}
-                alt={selectedImage.title || selectedImage.alt || 'Gallery Preview'}
+                alt={selectedImage.title || selectedImage.alt}
                 className="w-full h-full object-contain"
               />
             </div>
