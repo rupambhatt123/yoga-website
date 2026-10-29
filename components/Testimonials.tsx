@@ -22,10 +22,11 @@ export default function Testimonials() {
   };
 
   return (
-    <section className="bg-[#FAF8F5] pt-0 pb-6 sm:pb-8 lg:pb-10 overflow-hidden">
+    <section className="bg-[#FAF8F5] pt-8 sm:pt-10 lg:pt-0 pb-6 sm:pb-8 lg:pb-10 overflow-hidden">
       <div className="max-w-[1380px] mx-auto px-6 sm:px-10 lg:px-12">
         
-        <div className="mb-10 lg:mb-14">
+        {/* Mobile par center aligned aur md/lg par left aligned */}
+        <div className="mb-10 lg:mb-14 flex flex-col items-center text-center md:items-start md:text-left">
           <div className="flex items-center gap-3.5 mb-3.5">
             <div className="w-12 h-[1.5px] bg-[#C59B51]" />
             <span className="text-[12px] sm:text-xs uppercase tracking-[0.28em] font-semibold text-[#2E4738]">
@@ -35,23 +36,23 @@ export default function Testimonials() {
           </div>
 
           <h2
-            className="text-5xl sm:text-6xl lg:text-[76px] leading-[1.04] tracking-tight font-normal mb-4"
+            className="text-4xl sm:text-6xl lg:text-[76px] leading-[1.08] sm:leading-[1.04] tracking-tight font-normal mb-4"
             style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
           >
-            <span className="text-[#0D3829]">{testimonialsData.titleLine1}</span>
-            <span className="text-[#4E7655]">{testimonialsData.titleLine2}</span>
+            <span className="block sm:inline text-[#0D3829]">{testimonialsData.titleLine1}</span>{' '}
+            <span className="block sm:inline text-[#4E7655]">{testimonialsData.titleLine2}</span>
           </h2>
 
-          <p className="text-[16px] sm:text-[18px] leading-[1.5] text-[#244734] font-normal max-w-[460px]">
+          <p className="text-[15px] sm:text-[18px] leading-[1.55] sm:leading-[1.5] text-[#244734] font-normal max-w-[460px]">
             {testimonialsData.description}
           </p>
         </div>
 
         {/* Mobile View: Single Card with Pagination Dots & Arrows */}
         <div className="block md:hidden">
-          <div className="min-h-[220px] flex flex-col justify-between items-start transition-all duration-300">
-            <div>
-              <div className="flex items-center gap-1.5 mb-4 text-[#A67C2F]">
+          <div className="min-h-[220px] flex flex-col justify-between items-center text-center transition-all duration-300">
+            <div className="flex flex-col items-center">
+              <div className="flex items-center justify-center gap-1.5 mb-4 text-[#A67C2F]">
                 {[...Array(testimonials[activeIndex]?.rating || 5)].map((_, i) => (
                   <svg
                     key={i}

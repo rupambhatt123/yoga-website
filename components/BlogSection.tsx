@@ -22,6 +22,11 @@ export default function BlogSection() {
     setActiveMobileIndex((prev) => (prev === posts.length - 1 ? 0 : prev + 1));
   };
 
+  // Clean title for phone view to avoid random line splitting
+  const formattedTitle = typeof blogSectionData.title === 'string'
+    ? blogSectionData.title.replace(/\r?\n|\r/g, ' ').trim()
+    : blogSectionData.title;
+
   return (
     <section className="bg-[#FAF8F5] pt-4 sm:pt-6 lg:pt-8 pb-12 sm:pb-16 lg:pb-24 relative overflow-hidden">
       
@@ -40,10 +45,10 @@ export default function BlogSection() {
 
       <div className="max-w-[1360px] mx-auto px-4 sm:px-10 lg:px-14 relative z-10">
         
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 items-start mb-10 sm:mb-16 lg:mb-20">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 sm:gap-8 items-start mb-8 sm:mb-16 lg:mb-20">
           
           <div className="lg:col-span-7">
-            <div className="flex items-center gap-3.5 mb-3 sm:mb-4">
+            <div className="flex items-center gap-3.5 mb-2.5 sm:mb-4">
               <span className="text-[12px] sm:text-[13px] uppercase tracking-[0.28em] font-medium text-[#C59B51]">
                 {blogSectionData.badge}
               </span>
@@ -51,15 +56,15 @@ export default function BlogSection() {
             </div>
 
             <h2
-              className="text-[28px] xs:text-3xl sm:text-6xl lg:text-[68px] leading-[1.12] sm:leading-[1.05] text-[#173727] font-serif tracking-tight whitespace-normal sm:whitespace-pre-line"
+              className="text-[28px] xs:text-[32px] sm:text-5xl lg:text-[68px] leading-[1.15] sm:leading-[1.05] text-[#173727] font-serif tracking-tight max-w-[340px] sm:max-w-none"
               style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
             >
-              {blogSectionData.title}
+              {formattedTitle}
             </h2>
           </div>
 
           <div className="lg:col-span-5 flex flex-col items-start lg:items-start pt-1 sm:pt-3 lg:pl-10">
-            <div className="w-12 h-12 sm:w-14 sm:h-14 mb-3 sm:mb-4">
+            <div className="w-12 h-12 sm:w-14 sm:h-14 mb-2.5 sm:mb-4">
               <img
                 src="/lotus.png"
                 alt="Lotus"
@@ -70,7 +75,7 @@ export default function BlogSection() {
               />
             </div>
 
-            <p className="text-[14px] sm:text-[16px] leading-[1.6] sm:leading-[1.65] text-[#3D5244] max-w-[420px] mb-3 sm:mb-3.5 font-normal">
+            <p className="text-[13.5px] sm:text-[16px] leading-[1.6] sm:leading-[1.65] text-[#3D5244] max-w-[420px] mb-3 sm:mb-3.5 font-normal">
               {blogSectionData.description}
             </p>
 

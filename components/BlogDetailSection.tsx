@@ -121,20 +121,19 @@ export default function BlogDetailSection() {
 
             <div className="space-y-4 pt-1">
               {blogDetailData.recentPosts?.map((post: any) => (
-                <Link
+                <div
                   key={post.id}
-                  href="/blog-detail"
-                  className="flex items-center gap-3.5 group cursor-pointer"
+                  className="flex items-center gap-3.5 cursor-default"
                 >
                   <div className="w-[74px] h-[74px] rounded-[16px] overflow-hidden bg-[#ECE7DF] shrink-0">
                     <img
                       src={post.image}
                       alt={post.title}
-                      className="w-full h-full object-cover object-center group-hover:scale-105 transition duration-500"
+                      className="w-full h-full object-cover object-center"
                     />
                   </div>
                   <div className="flex-1 space-y-1">
-                    <h4 className="text-[13.5px] font-medium text-[#183726] group-hover:text-[#B5833B] transition line-clamp-2 leading-snug">
+                    <h4 className="text-[13.5px] font-medium text-[#183726] line-clamp-2 leading-snug">
                       {post.title}
                     </h4>
                     <div className="flex items-center gap-1.5 text-[11.5px] text-[#6A7E72]">
@@ -149,7 +148,7 @@ export default function BlogDetailSection() {
                       <span>{post.date}</span>
                     </div>
                   </div>
-                </Link>
+                </div>
               ))}
             </div>
           </div>
